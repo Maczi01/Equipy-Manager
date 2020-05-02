@@ -9,15 +9,18 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
-public class UserResource {
-    private UserService userService;
+@RequestMapping("/api")
+public class UserController{
 
-    UserResource(UserService userService) {
+    private UserService userService;
+    private AssetService assetService;
+
+    public UserController(UserService userService, AssetService assetService) {
         this.userService = userService;
+        this.assetService = assetService;
     }
 
-    @GetMapping("")
+    @GetMapping("/users")
     public List<UserDto> findUsersByLastName(@RequestParam(required = false) String lastName) {
         if (lastName != null) {
             return userService.findByName(lastName);
@@ -26,7 +29,7 @@ public class UserResource {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("/users")
     public UserDto saveUser(@RequestBody UserDto userDto) {
         if (userDto.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Obiekt nie może mieć ustawionego ID!");
@@ -35,7 +38,7 @@ public class UserResource {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return userService
                 .findUserById(id)
@@ -44,7 +47,7 @@ public class UserResource {
                         .build());
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         if (!id.equals(userDto.getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,

@@ -1,5 +1,6 @@
 package pl.javastart.equipy;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +12,10 @@ class UserService {
 
     private UserRepository userRepository;
 
-    UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
 
     List<UserDto> findAll() {
         return userRepository.findAll()
