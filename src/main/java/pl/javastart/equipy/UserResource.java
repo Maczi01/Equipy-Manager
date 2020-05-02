@@ -5,9 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,9 +28,29 @@ public class UserResource {
 
     @PostMapping("")
     public UserDto saveUser(@RequestBody UserDto userDto) {
-        if (userDto.getId() != null){
+        if (userDto.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Obiekt nie może mieć ustawionego ID!");
         }
         return userService.saveUser(userDto);
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return userService
+                .findUserById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound()
+                        .build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+        if (!id.equals(userDto.getId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Aktualizowany obiekt musi mieć id zgodne z id w ścieżce zasobu");
+        }
+        UserDto updatedUser = userService.update(userDto);
+        return ResponseEntity.ok(updatedUser);
     }
 }

@@ -1,5 +1,8 @@
 package pl.javastart.equipy;
 
+import org.springframework.stereotype.Component;
+
+@Component
 class UserMapper {
 
     static UserDto toDto(User user) {
