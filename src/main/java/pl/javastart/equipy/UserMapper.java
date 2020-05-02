@@ -1,24 +1,22 @@
 package pl.javastart.equipy;
 
-public class UserMapper {
+class UserMapper {
 
-    static UserTo mapUserToUserTo(User user){
-        UserTo userTo = new UserTo();
-        userTo.setId(user.getId());
-        userTo.setFirstName(user.getFirstName());
-        userTo.setLastName(user.getLastName());
-        userTo.setPesel(user.getPesel());
-        return userTo;
+    static UserDto toDto(User user) {
+        UserDto dto = new UserDto();
+        dto.setId(user.getId());
+        dto.setFirstName(user.getFirstName());
+        dto.setLastName(user.getLastName());
+        dto.setPesel(user.getPesel());
+        return dto;
     }
 
-
-    static User mapUserToToUser(UserTo userTo){
-        User user = new User();
-        user.setId(userTo.getId());
-        user.setFirstName(userTo.getFirstName());
-        user.setLastName(userTo.getLastName());
-        user.setPesel(userTo.getPesel());
-        return user;
+    static User toEntity(UserDto user) {
+        User entity = new User();
+        entity.setId(user.getId());
+        entity.setFirstName(user.getFirstName());
+        entity.setLastName(user.getLastName());
+        entity.setPesel(user.getPesel());
+        return entity;
     }
-
 }

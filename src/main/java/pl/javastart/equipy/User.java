@@ -1,30 +1,20 @@
 package pl.javastart.equipy;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 public class User {
-
-    public User() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @Column(unique = true)
     private String pesel;
-
-    public User(Long id, String firstName, String lastName, String pesel) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.pesel = pesel;
-    }
 
     public Long getId() {
         return id;

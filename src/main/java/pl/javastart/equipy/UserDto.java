@@ -1,7 +1,7 @@
 package pl.javastart.equipy;
 
-public class UserTo {
 
+public class UserDto {
     private Long id;
     private String firstName;
     private String lastName;
@@ -38,4 +38,5 @@ public class UserTo {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
+
 }
