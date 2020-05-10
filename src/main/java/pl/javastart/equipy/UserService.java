@@ -16,7 +16,6 @@ class UserService {
         this.userRepository = userRepository;
     }
 
-
     List<UserDto> findAll() {
         return userRepository.findAll()
                 .stream()
@@ -56,6 +55,14 @@ class UserService {
         return UserMapper.toDto(savedUser);
     }
 
+    public List<UserAssignmentDto> getUserAssignments(Long id) {
+        return userRepository.findById(id)
+                .map(User::getAssignmentList)
+                .orElseThrow(UserNotFoundException::new)
+                .stream()
+                .map(UserAssignementMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
 }
 

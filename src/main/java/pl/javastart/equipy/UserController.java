@@ -56,4 +56,9 @@ public class UserController{
         UserDto updatedUser = userService.update(userDto);
         return ResponseEntity.ok(updatedUser);
     }
+
+    @GetMapping("/users/{id}/assignments")
+    public List<UserAssignmentDto> getUserAssignments(@PathVariable Long id){
+        return userService.getUserAssignments(id);
+    }
 }
