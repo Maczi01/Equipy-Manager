@@ -50,4 +50,9 @@ public class AssetController {
     }
 
 
+    @GetMapping("/{id}/assignments")
+    public List<UserAssignmentDto> getAssetAssignments(@PathVariable Long id) {
+        return assetService.getAssetAssignments(id);
+    }
+
 }

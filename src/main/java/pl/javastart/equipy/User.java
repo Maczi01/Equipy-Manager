@@ -20,7 +20,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Assignment> assignmentList = new ArrayList<>();
 
-
     public Long getId() {
         return id;
     }

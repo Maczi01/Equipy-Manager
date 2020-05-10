@@ -1,6 +1,8 @@
 package pl.javastart.equipy;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,9 @@ public class Asset {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
+    @OneToMany(mappedBy = "asset")
+    private List<Assignment> assignmentList = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -71,6 +76,14 @@ public class Asset {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, serialNumber, category);
+    }
+
+    public List<Assignment> getAssignmentList() {
+        return assignmentList;
+    }
+
+    public void setAssignmentList(List<Assignment> assignmentList) {
+        this.assignmentList = assignmentList;
     }
 }
 
