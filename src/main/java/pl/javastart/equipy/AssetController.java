@@ -1,15 +1,12 @@
 package pl.javastart.equipy;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/assets")
 public class AssetController {
 
 
@@ -19,7 +16,7 @@ public class AssetController {
         this.assetService = assetService;
     }
 
-    @GetMapping("/assets")
+    @GetMapping("")
     public List<AssetDto> findByNameOrSerialNumber(@RequestParam(required = false) String text) {
         if (text != null) {
             return assetService.findByNameOrSerialNumber(text);
@@ -28,6 +25,10 @@ public class AssetController {
         }
     }
 
+    @PostMapping("")
+    public AssetDto addAsset(AssetDto assetDto) {
+        assetService.addAsset(assetDto);
+    }
 
 
 }

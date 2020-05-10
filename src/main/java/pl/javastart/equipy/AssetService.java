@@ -3,6 +3,7 @@ package pl.javastart.equipy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,5 +30,13 @@ public class AssetService {
                 .stream()
                 .map(assetMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public AssetDto addAsset(AssetDto assetDto){
+        Optional<Asset> assetBySerialNumer = assetRepository.findBySerialNumber(assetDto.getSerialNumber());
+        assetBySerialNumer.ifPresent(a -> {
+            throw new DuplicateSerialNumberException();
+        });
+
     }
 }
