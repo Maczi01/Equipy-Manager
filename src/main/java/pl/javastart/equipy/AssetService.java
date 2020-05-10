@@ -32,11 +32,42 @@ public class AssetService {
                 .collect(Collectors.toList());
     }
 
-    public AssetDto addAsset(AssetDto assetDto){
+    public AssetDto addAsset(AssetDto assetDto) {
         Optional<Asset> assetBySerialNumer = assetRepository.findBySerialNumber(assetDto.getSerialNumber());
         assetBySerialNumer.ifPresent(a -> {
             throw new DuplicateSerialNumberException();
         });
+        Asset assetEntity = assetMapper.toEntity(assetDto);
+        Asset savedAsset = assetRepository.save(assetEntity);
+        return assetMapper.toDto(savedAsset);
+    }
+
+    public Optional<AssetDto> getAssetById(Long id) {
+        return assetRepository.findById(id).map(assetMapper::toDto);
+    }
+
+    public AssetDto save(AssetDto assetDto) {
+        Optional<Asset> assetBySerialNumber = assetRepository.findBySerialNumber(assetDto.getSerialNumber());
+        assetBySerialNumber.ifPresent(a -> {
+            throw new DuplicateSerialNumberException();
+        });
+        return mapAndSave(assetDto);
+    };
+
+    public AssetDto update(AssetDto assetDto) {
+        Optional<Asset> assetBySerialNumber = assetRepository.findBySerialNumber(assetDto.getSerialNumber());
+        assetBySerialNumber.ifPresent(a -> {
+            if (!a.getId().equals(assetDto.getId())) {
+                throw new DuplicateSerialNumberException();
+            }
+        });
+        return mapAndSave(assetDto);
+    }
+
+    private AssetDto mapAndSave(AssetDto assetDto) {
+        Asset asset = assetMapper.toEntity(assetDto);
+        Asset savedAsset = assetRepository.save(asset);
+        return assetMapper.toDto(savedAsset);
 
     }
-}
+};

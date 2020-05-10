@@ -1,7 +1,9 @@
 package pl.javastart.equipy;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,9 +27,26 @@ public class AssetController {
         }
     }
 
+    @GetMapping("/{id}")
+    public AssetDto findByNameOrSerialNumber(@PathVariable Long id) {
+        return assetService.getAssetById(id).orElse(null);
+
+    }
+
+    //    TODO add response Entity
     @PostMapping("")
-    public AssetDto addAsset(AssetDto assetDto) {
-        assetService.addAsset(assetDto);
+    public AssetDto addAsset(@RequestBody AssetDto assetDto) {
+        return assetService.addAsset(assetDto);
+    }
+
+    //    TODO add response Entity
+    @PutMapping("/{id}")
+    public AssetDto updateAsset(@PathVariable Long id, @RequestBody AssetDto assetDto) {
+
+        if (!id.equals(assetDto.getId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany przedmiot musi mieć id zgodne z id ścieżki zasobu");
+        }
+        return assetService.update(assetDto);
     }
 
 
