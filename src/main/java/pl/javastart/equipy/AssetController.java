@@ -19,10 +19,6 @@ public class AssetController {
         this.assetService = assetService;
     }
 
-//    @GetMapping("/assets")
-//    public List<AssetDto> findAllEquipment() {
-//    }
-
     @GetMapping("/assets")
     public List<AssetDto> findByNameOrSerialNumber(@RequestParam(required = false) String text) {
         if (text != null) {
@@ -31,4 +27,7 @@ public class AssetController {
             return assetService.findAll();
         }
     }
+
+
+
 }
