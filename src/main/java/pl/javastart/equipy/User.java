@@ -2,6 +2,8 @@ package pl.javastart.equipy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,9 @@ public class User {
     private String lastName;
     @Column(unique = true)
     private String pesel;
+    @OneToMany(mappedBy = "user")
+    private List<Assignment> assignmentList = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -62,5 +67,13 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, pesel);
+    }
+
+    public List<Assignment> getAssignmentList() {
+        return assignmentList;
+    }
+
+    public void setAssignmentList(List<Assignment> assignmentList) {
+        this.assignmentList = assignmentList;
     }
 }
