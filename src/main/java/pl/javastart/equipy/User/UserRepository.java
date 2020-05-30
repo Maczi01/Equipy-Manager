@@ -11,6 +11,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByPesel(String pesel);
 
-
-
 }
