@@ -22,8 +22,8 @@ const Item = styled.li`
 export const Header = () => (
     <Nav>
         <List>
-            <Item><NavLink exact  to="/">Users</NavLink></Item>
-            <Item>Equipy</Item>
+            <NavLink exact  to="/"><Item>Users</Item></NavLink>
+            <NavLink exact  to="/equipy"><Item>Equipy</Item></NavLink>
         </List>
     </Nav>
 )
