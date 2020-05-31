@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  height: 50px;
+  height: 35px;
   background-color: dodgerblue;
   max-width: 120px;
   color: white;
@@ -9,6 +9,6 @@ export const Button = styled.button`
   cursor: pointer;
   text-decoration: none;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
 
 `

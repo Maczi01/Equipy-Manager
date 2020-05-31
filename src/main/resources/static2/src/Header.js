@@ -5,13 +5,15 @@ import {NavLink} from "react-router-dom";
 const Nav = styled.nav`
     width: 100vw;
     height:60px;
+    margin: 0 auto;
     background-color: #343a40;
+    padding: 0;
 `
+
 const List = styled.ul`
-  //list-style: none;
   display: inline-block;
-  //margin-right: 50px;
 `
+
 const Item = styled.li`
   list-style: none;
   display: inline-block;

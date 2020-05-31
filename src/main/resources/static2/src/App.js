@@ -6,6 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {MainView} from "./views/MainView";
 import {EquipyView} from "./views/EquipyView";
+import {AddEquipyForm} from "./views/AddEquipyForm";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Header/>
                 <Route exact path="/" component={MainView}/>
                 <Route path="/equipy" component={EquipyView}/>
+                <Route path="/addequipy" component={AddEquipyForm}/>
         </BrowserRouter>
     );
 }

@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {EquipyTable} from "../components/EquipyTable";
 import {Button} from "../components/Button";
+import {Link} from "react-router-dom";
 
 const ViewWrapper = styled.div`
    margin: 0 auto;
@@ -103,7 +104,7 @@ export const EquipyView = () => (
         </SearchWrapper>
 
         <EquipyTable/>
-        <Button>Add new equipy </Button>
+        <Button><Link to="/addequipy">Add new equipy</Link> </Button>
 
     </ViewWrapper>
 )
