@@ -44,7 +44,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const Table = () => (
+export const UserTable = () => (
     <Wrapper>
 
         <TableWrapper>

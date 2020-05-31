@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import background from "../assets/background.jpg"
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {Table} from "../components/Table";
+import {Table, UserTable} from "../components/UserTable";
+import {Button} from "../components/Button";
 
 
 const ViewWrapper = styled.div`
@@ -89,6 +90,8 @@ const Label = styled.label`
   border-bottom-right-radius: 0;
 `
 
+
+
 export const MainView = () => (
     <ViewWrapper>
         <MainImage src={background}/>
@@ -101,8 +104,8 @@ export const MainView = () => (
             </InputButton>
         </SearchWrapper>
 
-        <Table/>
-
+        <UserTable/>
+        <Button>Add new user </Button>
     </ViewWrapper>
 
 )
