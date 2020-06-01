@@ -5,12 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.javastart.equipy.Asset.AssetService;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class UserController{
 
     private UserService userService;
@@ -31,11 +34,18 @@ public class UserController{
     }
 
     @PostMapping("/users")
-    public UserDto saveUser(@RequestBody UserDto userDto) {
-        if (userDto.getId() != null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Obiekt nie może mieć ustawionego ID!");
-        }
-        return userService.saveUser(userDto);
+    public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
+        if(user.getId() != null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt nie może mieć ustawionego id");
+        UserDto savedUser = userService.saveUser(user);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+//        return ResponseEntity.created(location).body(savedUser);
+        return ResponseEntity.ok(savedUser);
+
     }
 
 

@@ -29,7 +29,6 @@ export const MainView = () => (
                 <MainImage/>
                 <SearchBar/>
                 <UserTable users={context.users}/>
-
                 <Button><Link to="/adduser">Add new user</Link> </Button>
             </ViewWrapper>
         )}
