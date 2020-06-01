@@ -5,6 +5,7 @@ import {Button} from "../components/Button";
 import {UserTable} from "../components/UserTable";
 import {Link} from "react-router-dom";
 import {SearchBar} from "../components/SearchBar";
+import AppContext from "../context/context";
 
 
 const ViewWrapper = styled.div`
@@ -22,11 +23,15 @@ const MainImage = styled.div`
 `
 
 export const MainView = () => (
-    <ViewWrapper>
-        <MainImage/>
-        <SearchBar/>
-        <UserTable/>
-        <Button><Link to="/adduser">Add new user</Link> </Button>
-    </ViewWrapper>
+    <AppContext.Consumer>
+        {(context) => (
+            <ViewWrapper>
+                <MainImage/>
+                <SearchBar/>
+                <UserTable users={context.users}/>
 
-)
+                <Button><Link to="/adduser">Add new user</Link> </Button>
+            </ViewWrapper>
+        )}
+    </AppContext.Consumer>
+);

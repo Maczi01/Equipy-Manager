@@ -52,7 +52,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const EquipyTable = () => (
+export const EquipyTable = ({assets}) => (
     <Wrapper>
 
         <TableWrapper>
@@ -77,75 +77,31 @@ export const EquipyTable = () => (
                     Action
                 </Cell>
             </HeaderAndRow>
-
-            <Row>
-                <Cell>
-                    1
-                </Cell>
-                <Cell>
-                    Asus MateBook D
-                </Cell>
-                <Cell>
-                    15" laptop, i5, 8GB, DDR3, black
-                </Cell>
-                <Cell>
-                    900562245
-                </Cell>
-                <Cell>
-                    Laptops
-                </Cell>
-                <Cell>
-                    <FontAwesomeIconWrapper icon={faEdit}/>
-                    <FontAwesomeIconWrapper icon={faHistory}/>
-                    <FontAwesomeIconWrapper icon={faTrashAlt}/>
-                </Cell>
-            </Row>
-
-            <Row>
-                <Cell>
-                    1
-                </Cell>
-                <Cell>
-                    Asus MateBook D
-                </Cell>
-                <Cell>
-                    15" laptop, i5, 8GB, DDR3, black
-                </Cell>
-                <Cell>
-                    900562245
-                </Cell>
-                <Cell>
-                    Laptops
-                </Cell>
-                <Cell>
-                    <FontAwesomeIconWrapper icon={faEdit}/>
-                    <FontAwesomeIconWrapper icon={faHistory}/>
-                    <FontAwesomeIconWrapper icon={faTrashAlt}/>
-                </Cell>
-            </Row>
-
-            <Row>
-                <Cell>
-                    1
-                </Cell>
-                <Cell>
-                    Asus MateBook D
-                </Cell>
-                <Cell>
-                    15" laptop, i5, 8GB, DDR3, black
-                </Cell>
-                <Cell>
-                    900562245
-                </Cell>
-                <Cell>
-                    Laptops
-                </Cell>
-                <Cell>
-                    <FontAwesomeIconWrapper icon={faEdit}/>
-                    <FontAwesomeIconWrapper icon={faHistory}/>
-                    <FontAwesomeIconWrapper icon={faTrashAlt}/>
-                </Cell>
-            </Row>
+            {assets.map((asset, index) =>
+                <Row
+                key={`asset-${asset.serialNumber}`}
+                >
+                    <Cell>
+                        {index+1}
+                    </Cell>
+                    <Cell>
+                        {asset.name}
+                    </Cell>
+                    <Cell>
+                        {`${asset.description.substring(0,20)}...`}
+                    </Cell>
+                    <Cell>
+                        {asset.serialNumber}
+                    </Cell>
+                    <Cell>
+                        {asset.category}
+                    </Cell>
+                    <Cell>
+                        <FontAwesomeIconWrapper icon={faEdit}/>
+                        <FontAwesomeIconWrapper icon={faHistory}/>
+                        <FontAwesomeIconWrapper icon={faTrashAlt}/>
+                    </Cell>
+                </Row>)}
         </TableWrapper>
 
 

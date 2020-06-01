@@ -44,7 +44,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const UserTable = () => (
+export const UserTable = ({users}) => (
     <Wrapper>
 
         <TableWrapper>
@@ -67,65 +67,36 @@ export const UserTable = () => (
                 </Cell>
             </HeaderAndRow>
 
-            <Row>
-                <Cell>
-                    1
-                </Cell>
-                <Cell>
-                    Luke
-                </Cell>
-                <Cell>
-                    Peters
-                </Cell>
-                <Cell>
-                    900562245
-                </Cell>
-                <Cell>
-                    <FontAwesomeIconWrapper icon={faUserEdit}/>
-                    <FontAwesomeIconWrapper icon={faUserCog}/>
-                    <FontAwesomeIconWrapper icon={faUserMinus}/>
-                </Cell>
-            </Row>
 
-            <Row>
-                <Cell>
-                    1
-                </Cell>
-                <Cell>
-                    Luke
-                </Cell>
-                <Cell>
-                    Peters
-                </Cell>
-                <Cell>
-                    900562245
-                </Cell>
-                <Cell>
-                    <FontAwesomeIconWrapper icon={faUserEdit}/>
-                    <FontAwesomeIconWrapper icon={faUserCog}/>
-                    <FontAwesomeIconWrapper icon={faUserMinus}/>
-                </Cell>
-            </Row>
+            {users.map( (user, index )=>
 
-            <Row>
-                <Cell>
-                    1
-                </Cell>
-                <Cell>
-                    Luke
-                </Cell>
-                <Cell>
-                    Peters
-                </Cell>
-                <Cell>
-                    900562245
-                </Cell>
-                <Cell>
-                    <FontAwesomeIconWrapper icon={faUserEdit}/>
-                    <FontAwesomeIconWrapper icon={faUserCog}/>
-                    <FontAwesomeIconWrapper icon={faUserMinus}/>
-                </Cell>
-            </Row>
+                <Row
+                    key={`asset-${user.serialNumber}`}
+
+                >
+                    <Cell>
+                        {index+1}
+                    </Cell>
+                    <Cell>
+                        {user.firstName}
+                    </Cell>
+                    <Cell>
+                        {user.lastName}
+                    </Cell>
+                    <Cell>
+                        {user.pesel}
+                    </Cell>
+                    <Cell>
+                        <FontAwesomeIconWrapper icon={faUserEdit}/>
+                        <FontAwesomeIconWrapper icon={faUserCog}/>
+                        <FontAwesomeIconWrapper icon={faUserMinus}/>
+                    </Cell>
+                </Row>
+
+            )}
+
+
+
 
         </TableWrapper>
 
