@@ -20,10 +20,9 @@ const SearchInput = styled.input`
   flex-basis: auto;
   align-self: center;
   border-radius: 0.25rem;
-  height: 51px;
+  height: 35px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-   -webkit-appearance: none !important;
   background-clip: padding-box;
   background-color: white;
   vertical-align: middle;
@@ -38,9 +37,9 @@ const SearchInput = styled.input`
   
 `
 const InputButton = styled.button`
- height: 51px;
+  height: 35px;
   margin: 0;
-  padding: 1rem 1.3rem;
+  padding: 10px 1.3rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0.25rem;
@@ -58,8 +57,6 @@ const InputButton = styled.button`
   border: 1px solid transparent;
   vertical-align: middle;
   text-shadow: none;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
   transition: all 0.2s;
   
 `
@@ -69,7 +66,7 @@ const Label = styled.label`
   flex-shrink: 0;
   flex-basis: auto;
   align-self: center;
-  height: 51px;
+  height: 35px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 `

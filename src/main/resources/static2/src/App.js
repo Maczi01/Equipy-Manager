@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Header} from "./Header";
@@ -9,16 +9,29 @@ import {EquipyView} from "./views/EquipyView";
 import {AddEquipyForm} from "./views/AddEquipyForm";
 import {AddUserForm} from "./views/AddUserForm";
 
-function App() {
-    return (
-        <BrowserRouter>
+class App extends Component {
+
+    state = {
+        users: [],
+        equipy: [],
+    }
+
+    componentDidMount() {
+        CatchData.usersApi()
+    }
+
+    render() {
+        return (
+            <BrowserRouter>
                 <Header/>
                 <Route exact path="/" component={MainView}/>
                 <Route path="/equipy" component={EquipyView}/>
                 <Route path="/addequipy" component={AddEquipyForm}/>
                 <Route path="/adduser" component={AddUserForm}/>
-        </BrowserRouter>
-    );
+            </BrowserRouter>
+        );
+    }
+
 }
 
 export default App;
