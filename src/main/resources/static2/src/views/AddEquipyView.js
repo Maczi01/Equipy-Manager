@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg";
 import {Button} from "../components/Button";
+import {AddEquipy} from "../components/AddEquipy";
+import AppContext from "../context/context";
 
 const ViewWrapper = styled.div`
    margin: 0 auto;
@@ -32,7 +34,7 @@ const Input = styled.input`
   font-size: 18px;
 `
 
-const Select= styled.select`
+const Select = styled.select`
   height: 40px;
   border-radius: 5px;
   border: 1px solid #ced4da;
@@ -54,23 +56,13 @@ const Textarea = styled.textarea`
   font-size: 18px;
 `
 
-export const AddEquipyForm = () => (
-    <ViewWrapper>
-        <MainImage  />
-        <FormWrapper>
-            <FormHeader>New resource</FormHeader>
-            <label> </label>
-            <Input placeholder="name"/>
-            <label> </label>
-            <Input placeholder="serial number"/>
-            <label> </label>
-            <Select placeholder="name">
-                <option>Laptops</option>
-                <option>Cars</option>
-            </Select>
-            <label> </label>
-            <Textarea placeholder="description"></Textarea>
-            <Button>Save</Button>
-        </FormWrapper>
-    </ViewWrapper>
+export const AddEquipyView = () => (
+    <AppContext.Consumer>
+        {(context) => (
+            <ViewWrapper>
+                <MainImage/>
+                <AddEquipy addEquipy={context.addEquipy}/>
+            </ViewWrapper>
+        )}
+    </AppContext.Consumer>
 )

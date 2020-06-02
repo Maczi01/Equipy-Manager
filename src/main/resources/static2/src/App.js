@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {MainView} from "./views/MainView";
 import {EquipyView} from "./views/EquipyView";
-import {AddEquipyForm} from "./views/AddEquipyForm";
+import {AddEquipyView} from "./views/AddEquipyView";
 import {AddUserForm, AddUserView} from "./views/AddUserView";
 import {CatchData} from "./api/CatchData";
 import AppContext from './context/context'
@@ -47,7 +47,7 @@ class App extends Component {
                     <Header/>
                     <Route exact path="/" component={MainView}/>
                     <Route path="/equipy" component={EquipyView}/>
-                    <Route path="/addequipy" component={AddEquipyForm}/>
+                    <Route path="/addequipy" component={AddEquipyView}/>
                     <Route path="/adduser" component={AddUserView}/>
                 </AppContext.Provider>
             </BrowserRouter>
