@@ -71,7 +71,7 @@ export const UserTable = ({users}) => (
             {users.map( (user, index )=>
 
                 <Row
-                    key={`asset-${user.serialNumber}`}
+                    key={`user-${user.pesel}`}
 
                 >
                     <Cell>

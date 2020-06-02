@@ -28,17 +28,23 @@ class App extends Component {
     }
 
     addUser = (user) => {
-        console.log(user)
         CatchData.addUser(user)
             .then(() => CatchData.getUsers())
             .then(users => this.setState({users}))
-    }
+    };
+
+    addEquipy = (equipy) => {
+        CatchData.addEquipy(equipy)
+            .then(() => CatchData.getEquipy())
+            .then(assets => this.setState({assets}))
+    };
 
     render() {
         const contextElements = {
             users: this.state.users,
             assets: this.state.assets,
             addUser: this.addUser,
+            addEquipy: this.addEquipy,
         }
 
         return (

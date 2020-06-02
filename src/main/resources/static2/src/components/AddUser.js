@@ -1,9 +1,6 @@
 import {Button} from "./Button";
 import React, {useState} from "react";
-import background from "../assets/background.jpg";
 import styled from 'styled-components';
-
-
 
 
 const FormWrapper = styled.div`

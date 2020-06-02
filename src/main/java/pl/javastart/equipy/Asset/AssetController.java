@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/assets")
+@CrossOrigin
 public class AssetController {
 
 

@@ -1,8 +1,14 @@
 import {Button} from "./Button";
 import React, {useState} from "react";
-import background from "../assets/background.jpg";
 import styled from 'styled-components';
 
+
+const ViewWrapper = styled.div`
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   width: 80vw;
+`
 
 const FormWrapper = styled.div`
    display: flex;
@@ -56,36 +62,38 @@ export const AddEquipy = ({addEquipy}) => {
     }
 
     return (
-        <FormWrapper>
-            <FormHeader>New user</FormHeader>
-            <form onSubmit={handleSubmit}>
-                <label> </label>
-                <Input
-                    onChange={e => setName(e.target.value)}
-                    value={name}
-                    placeholder="Name"
-                />
-                <label> </label>
-                <Textarea
-                    onChange={e => setDescription(e.target.value)}
-                    value={description}
-                    placeholder="Description"/>
-                <label> </label>
-                <Input
-                    onChange={e => setSerialNumber(e.target.value)}
-                    value={serialNumber}
-                    placeholder="serialNumber"/>
-                <label> </label>
-                <Select
-                    onChange={e => setCategory(e.target.value)}
-                    value={category}
-                    placeholder="category">
-                    <option>Cars</option>
-                    <option>Laptops</option>
-                </Select>
-                <Button>Save</Button>
-            </form>
-        </FormWrapper>
+        <ViewWrapper>
+            <FormWrapper>
+                <FormHeader>New user</FormHeader>
+                <form onSubmit={handleSubmit}>
+                    <label> </label>
+                    <Input
+                        onChange={e => setName(e.target.value)}
+                        value={name}
+                        placeholder="Name"
+                    />
+                    <label> </label>
+                    <Textarea
+                        onChange={e => setDescription(e.target.value)}
+                        value={description}
+                        placeholder="Description"/>
+                    <label> </label>
+                    <Input
+                        onChange={e => setSerialNumber(e.target.value)}
+                        value={serialNumber}
+                        placeholder="serialNumber"/>
+                    <label> </label>
+                    <Select
+                        onChange={e => setCategory(e.target.value)}
+                        value={category}
+                        placeholder="category">
+                        <option>Cars</option>
+                        <option>Laptops</option>
+                    </Select>
+                    <Button>Save</Button>
+                </form>
+            </FormWrapper>
+        </ViewWrapper>
 
     )
 }

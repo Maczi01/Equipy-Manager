@@ -11,6 +11,10 @@ export const CatchData = {
         const response = await axios.post("http://localhost:8080/api/users", user);
         return response.data;
     },
+    addEquipy: async (equipy) => {
+        const response = await axios.post("http://localhost:8080/api/assets", equipy);
+        return response.data;
+    },
 
 
 

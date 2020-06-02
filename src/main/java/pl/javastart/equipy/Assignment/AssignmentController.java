@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/assignments")
+@CrossOrigin
 public class AssignmentController {
 
     private AssignmentService assignmentService;
