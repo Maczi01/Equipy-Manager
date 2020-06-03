@@ -46,7 +46,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const UserTable = ({users, deleteUser, editUser}) => {
+export const UserTable = ({users, deleteUser}) => {
     const history = useHistory();
 
     return (
@@ -94,8 +94,7 @@ export const UserTable = ({users, deleteUser, editUser}) => {
                         <Cell>
                             <FontAwesomeIconWrapper
                                 onClick={() => history.push(`/edituser/${user.id}`)}
-                                icon={faUserEdit} title="Edit user"> EDYTUJ!
-                            </FontAwesomeIconWrapper>
+                                icon={faUserEdit} title="Edit user"/>
                             <FontAwesomeIconWrapper icon={faUserCog} title="Manage assets"/>
                             <FontAwesomeIconWrapper icon={faUserMinus}
                                                     onClick={() => deleteUser(index)}

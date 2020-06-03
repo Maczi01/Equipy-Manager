@@ -29,7 +29,11 @@ export const EquipyView = () => (
             <ViewWrapper>
                 <MainImage/>
                 <SearchBar/>
-                <EquipyTable assets={context.assets}/>
+                <EquipyTable
+                    assets={context.assets}
+                    edit={context.editAsset}
+                    deleteAsset={context.deleteAsset}
+                />
                 <Button><Link to="/addequipy">Add new equipy</Link> </Button>
             </ViewWrapper>
         )}

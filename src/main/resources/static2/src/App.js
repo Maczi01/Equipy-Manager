@@ -61,7 +61,7 @@ class App extends Component {
             .then(assets => this.setState({assets}))
     };
 
-    editEquipy = (assetToUpdate) => {
+    editAsset = (assetToUpdate) => {
         Equipy.editAsset(assetToUpdate)
             .then((updatedAsset) => this.setState(prevState => {
                     return {
@@ -74,7 +74,7 @@ class App extends Component {
             );
     }
 
-    removeEquipy = (indexToRemove) => {
+    deleteAsset = (indexToRemove) => {
         Equipy.deleteAsset(this.state.assets[indexToRemove])
             .then(this.setState(prevState => {
                 const assets = this.state.assets.filter((asset, index) => index !== indexToRemove)
@@ -83,16 +83,16 @@ class App extends Component {
     }
 
 
-
-
     render() {
         const contextElements = {
             users: this.state.users,
-            assets: this.state.assets,
             addUser: this.addUser,
-            addEquipy: this.addEquipy,
             editUser: this.editUser,
-            deleteUser: this.removeUser
+            deleteUser: this.removeUser,
+            assets: this.state.assets,
+            addEquipy: this.addEquipy,
+            editAsset: this.editAsset,
+            deleteAsset: this.deleteAsset,
         }
 
         return (

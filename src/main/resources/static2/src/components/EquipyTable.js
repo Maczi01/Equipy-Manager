@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faHistory, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faHistory, faTrashAlt, faUserCog, faUserEdit, faUserMinus} from "@fortawesome/free-solid-svg-icons";
+import {useHistory} from "react-router";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -41,61 +42,70 @@ const Cell = styled.div`
 
 const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
   margin: 0 20px;
+  cursor: pointer;
 `
 
+export const EquipyTable = ({assets, deleteAsset}) => {
+    const history = useHistory();
+    return (
+        <Wrapper>
 
-export const EquipyTable = ({assets}) => (
-    <Wrapper>
+            <TableWrapper>
 
-        <TableWrapper>
+                <HeaderAndRow>
+                    <Cell>
+                        #
+                    </Cell>
+                    <Cell>
+                        Name
+                    </Cell>
+                    <Cell>
+                        Description
+                    </Cell>
+                    <Cell>
+                        Id number
+                    </Cell>
+                    <Cell>
+                        Category
+                    </Cell>
+                    <Cell>
+                        Action
+                    </Cell>
+                </HeaderAndRow>
+                {assets.map((asset, index) =>
+                    <Row
+                        key={`asset-${asset.serialNumber}`}
+                    >
+                        <Cell>
+                            {index + 1}
+                        </Cell>
+                        <Cell>
+                            {asset.name}
+                        </Cell>
+                        <Cell>
+                            {`${asset.description.substring(0, 20)}...`}
+                        </Cell>
+                        <Cell>
+                            {asset.serialNumber}
+                        </Cell>
+                        <Cell>
+                            {asset.category}
+                        </Cell>
+                        <Cell>
+                            <FontAwesomeIconWrapper
+                                icon={faEdit}
+                                onClick={() => history.push(`/editasset/${asset.id}`)}
+                                title="Edit user"/>
+                            <FontAwesomeIconWrapper icon={faHistory}/>
+                            <FontAwesomeIconWrapper icon={faTrashAlt}
+                                                    onClick={() => deleteAsset(index)}
+                                                    title="Delete asset"/>
+                        </Cell>
+                    </Row>
+                )}
+            </TableWrapper>
 
-            <HeaderAndRow>
-                <Cell>
-                    #
-                </Cell>
-                <Cell>
-                    Name
-                </Cell>
-                <Cell>
-                    Description
-                </Cell>
-                <Cell>
-                    Id number
-                </Cell>
-                <Cell>
-                    Category
-                </Cell>
-                <Cell>
-                    Action
-                </Cell>
-            </HeaderAndRow>
-            {assets.map((asset, index) =>
-                <Row
-                key={`asset-${asset.serialNumber}`}
-                >
-                    <Cell>
-                        {index+1}
-                    </Cell>
-                    <Cell>
-                        {asset.name}
-                    </Cell>
-                    <Cell>
-                        {`${asset.description.substring(0,20)}...`}
-                    </Cell>
-                    <Cell>
-                        {asset.serialNumber}
-                    </Cell>
-                    <Cell>
-                        {asset.category}
-                    </Cell>
-                    <Cell>
-                        <FontAwesomeIconWrapper icon={faEdit}/>
-                        <FontAwesomeIconWrapper icon={faHistory}/>
-                        <FontAwesomeIconWrapper icon={faTrashAlt}/>
-                    </Cell>
-                </Row>)}
-        </TableWrapper>
 
-
-    </Wrapper>
-)
+        </Wrapper>
+    )
+}

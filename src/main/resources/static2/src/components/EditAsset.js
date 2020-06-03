@@ -43,14 +43,14 @@ const Textarea = styled.textarea`
 
 export const EditAsset = ({editUser, asset}) => {
 
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [serialNumber, setSerialNumber] = useState("")
-    const [category, setCategory] = useState("")
+    const [name, setName] = useState(asset.name)
+    const [description, setDescription] = useState(asset.description)
+    const [serialNumber, setSerialNumber] = useState(asset.serialNumber)
+    const [category, setCategory] = useState(asset.category)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        editUser({name, description, serialNumber, category});
+        editUser({...asset, name, description, serialNumber, category});
     }
 
     return (
