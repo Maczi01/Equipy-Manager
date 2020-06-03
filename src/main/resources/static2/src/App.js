@@ -7,10 +7,11 @@ import {MainView} from "./views/MainView";
 import {EquipyView} from "./views/EquipyView";
 import {AddEquipyView} from "./views/AddEquipyView";
 import {AddUserView} from "./views/AddUserView";
-import {Users, Equipy} from "./api/Api";
+import {Users, Equipy, Assignment} from "./api/Api";
 import AppContext from './context/context'
 import EditUserView from "./views/EditUserView";
 import EditAssetView from "./views/EditAssetView";
+import {UserAssignmentView} from "./views/UserAssignmentView";
 
 class App extends Component {
 
@@ -48,9 +49,10 @@ class App extends Component {
     };
 
     removeUser = (indexToRemove) => {
-        Users.deleteUser(this.state.users[indexToRemove])
+        const userToRemove = this.state.users.filter(u => u.id == indexToRemove)[0]
+        Users.deleteUser(userToRemove)
             .then(this.setState(prevState => {
-                const users = this.state.users.filter((user, index) => index !== indexToRemove)
+                const users = this.state.users.filter((user, index) => user.id !== indexToRemove)
                 return {users}
             }))
     }
@@ -65,8 +67,8 @@ class App extends Component {
         Equipy.editAsset(assetToUpdate)
             .then((updatedAsset) => this.setState(prevState => {
                     return {
-                        users: [
-                            ...prevState.users.map(u =>
+                        assets: [
+                            ...prevState.assets.map(u =>
                                 u.id === updatedAsset.id ? updatedAsset : u
                             )]
                     };
@@ -75,13 +77,17 @@ class App extends Component {
     }
 
     deleteAsset = (indexToRemove) => {
-        Equipy.deleteAsset(this.state.assets[indexToRemove])
+        const assetToRemove = this.state.assets.filter(a => a.id == indexToRemove)[0]
+        Equipy.deleteAsset(assetToRemove)
             .then(this.setState(prevState => {
-                const assets = this.state.assets.filter((asset, index) => index !== indexToRemove)
+                const assets = this.state.assets.filter((asset, index) => asset.id !== indexToRemove)
                 return {assets}
             }))
     }
 
+    // getAssignment = (id) => {
+    //    return Assignment.getUsers(id);
+    // }
 
     render() {
         const contextElements = {
@@ -93,6 +99,7 @@ class App extends Component {
             addEquipy: this.addEquipy,
             editAsset: this.editAsset,
             deleteAsset: this.deleteAsset,
+            // assignments: this.getAssignment,
         }
 
         return (
@@ -105,6 +112,7 @@ class App extends Component {
                     <Route path="/adduser" component={AddUserView}/>
                     <Route path="/edituser/:id" component={EditUserView}/>
                     <Route path="/editasset/:id" component={EditAssetView}/>
+                    <Route path="/userassignment/:id" component={UserAssignmentView}/>
                 </AppContext.Provider>
             </BrowserRouter>
         );

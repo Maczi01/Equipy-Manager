@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useContext} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUserCog, faUserEdit, faUserMinus} from "@fortawesome/free-solid-svg-icons";
+import {faUserCog, faUndo, faUserMinus} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router";
+import AppContext from "../context/context";
+import {Assignment} from "../api/Api";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -46,18 +48,11 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const UserTable = ({users, deleteUser}) => {
-    const history = useHistory();
-
+export const AssignmentTable = ({assignments, user}) => {
     return (
         <Wrapper>
-
             <TableWrapper>
-
                 <HeaderAndRow>
-                    <Cell>
-                        #
-                    </Cell>
                     <Cell>
                         Name
                     </Cell>
@@ -67,45 +62,71 @@ export const UserTable = ({users, deleteUser}) => {
                     <Cell>
                         Id number
                     </Cell>
+                </HeaderAndRow>
+
+                <Row>
+
+                    <Cell>
+                        {user.firstName}
+                    </Cell>
+                    <Cell>
+                        {user.lastName}
+                    </Cell>
+                    <Cell>
+                        {user.pesel}
+                    </Cell>
+                </Row>
+            </TableWrapper>
+
+            <TableWrapper>
+                <HeaderAndRow>
+                    <Cell>
+                        #
+                    </Cell>
+                    <Cell>
+                        Name of resource
+                    </Cell>
+                    <Cell>
+                        Serial Number
+                    </Cell>
+                    <Cell>
+                        Start
+                    </Cell>
+                    <Cell>
+                        End
+                    </Cell>
                     <Cell>
                         Action
                     </Cell>
                 </HeaderAndRow>
 
 
-                {users.map((user, index) =>
-
+                {assignments.map((assignment, index) =>
                     <Row
-                        key={`user-${user.pesel}`}
-
-                    >
+                        key={`user-${index}`}>
                         <Cell>
                             {index + 1}
                         </Cell>
-                        <Cell>
-                            {user.firstName}
-                        </Cell>
-                        <Cell>
-                            {user.lastName}
-                        </Cell>
-                        <Cell>
-                            {user.pesel}
-                        </Cell>
-                        <Cell>
-                            <FontAwesomeIconWrapper
-                                onClick={() => history.push(`/edituser/${user.id}`)}
-                                icon={faUserEdit} title="Edit user"/>
-                            <FontAwesomeIconWrapper icon={faUserCog}
-                                                    title="Manage assets"
-                                                    onClick={() => history.push(`/userassignment/${user.id}`)}
-                            />
 
-                            <FontAwesomeIconWrapper icon={faUserMinus}
-                                                    onClick={() => deleteUser(user.id)}
-                                                    title="Delete User"/>
+                        <Cell>
+                            {assignment.assetName}
+                        </Cell>
+
+                        <Cell>
+                            {assignment.assetName}
+                        </Cell>
+                        <Cell>
+                            {assignment.start}
+                        </Cell>
+                        <Cell>
+                            {assignment.end}
+                        </Cell>
+                        <Cell>
+                            <FontAwesomeIconWrapper icon={faUndo}/>
                         </Cell>
                     </Row>
-                )}
+                )
+                }
 
 
             </TableWrapper>

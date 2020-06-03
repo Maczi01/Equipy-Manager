@@ -40,11 +40,17 @@ export const Equipy = {
         if (!assetToUpdate.id) {
             throw new Error("This timebox haven't id!")
         }
-        const response = await axios.put(`${BASE_URL}/users/${assetToUpdate.id}`, assetToUpdate)
+        const response = await axios.put(`${BASE_URL}/assets/${assetToUpdate.id}`, assetToUpdate)
         return response.data;
     },
+
     deleteAsset: async (assetToRemove) => {
         await axios.delete(`${BASE_URL}/assets/${assetToRemove.id}`)
     },
-
+}
+export const Assignment = {
+    getUsers: async (id) => {
+        const response = await axios.get(`${BASE_URL}/users/${id}/assignments`);
+        return response.data;
+    },
 }

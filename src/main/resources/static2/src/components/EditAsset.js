@@ -41,7 +41,7 @@ const Textarea = styled.textarea`
   font-size: 18px;
 `
 
-export const EditAsset = ({editUser, asset}) => {
+export const EditAsset = ({editAsset, asset}) => {
 
     const [name, setName] = useState(asset.name)
     const [description, setDescription] = useState(asset.description)
@@ -50,7 +50,7 @@ export const EditAsset = ({editUser, asset}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        editUser({...asset, name, description, serialNumber, category});
+        editAsset({...asset, name, description, serialNumber, category});
     }
 
     return (
