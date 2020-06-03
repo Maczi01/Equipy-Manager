@@ -122,7 +122,7 @@ export const AssignmentTable = ({assignments, user}) => {
                             {assignment.end}
                         </Cell>
                         <Cell>
-                            <FontAwesomeIconWrapper icon={faUndo}/>
+                            {assignment.end ? null : <FontAwesomeIconWrapper icon={faUndo}/> }
                         </Cell>
                     </Row>
                 )
