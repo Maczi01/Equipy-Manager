@@ -97,7 +97,7 @@ export const UserTable = ({users, deleteUser}) => {
                                 icon={faUserEdit} title="Edit user"/>
                             <FontAwesomeIconWrapper icon={faUserCog} title="Manage assets"/>
                             <FontAwesomeIconWrapper icon={faUserMinus}
-                                                    onClick={() => deleteUser(index)}
+                                                    onClick={() => deleteUser(user.id)}
                                                     title="Delete User"/>
                         </Cell>
                     </Row>

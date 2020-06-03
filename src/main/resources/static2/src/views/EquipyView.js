@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg";
 import {EquipyTable} from "../components/EquipyTable";
@@ -22,21 +22,20 @@ const MainImage = styled.div`
   background-image: url(${background});
 `;
 
-export const EquipyView = () => (
+export const EquipyView = () => {
 
-    <AppContext.Consumer>
-        {(context) => (
-            <ViewWrapper>
-                <MainImage/>
-                <SearchBar/>
-                <EquipyTable
-                    assets={context.assets}
-                    edit={context.editAsset}
-                    deleteAsset={context.deleteAsset}
-                />
-                <Button><Link to="/addequipy">Add new equipy</Link> </Button>
-            </ViewWrapper>
-        )}
-    </AppContext.Consumer>
+    const context = useContext(AppContext);
 
-);
+    return (
+        <ViewWrapper>
+            <MainImage/>
+            <SearchBar/>
+            <EquipyTable
+                assets={context.assets}
+                edit={context.editAsset}
+                deleteAsset={context.deleteAsset}
+            />
+            <Button><Link to="/addequipy">Add new equipy</Link> </Button>
+        </ViewWrapper>
+    )
+};

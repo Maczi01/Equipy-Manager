@@ -98,7 +98,7 @@ export const EquipyTable = ({assets, deleteAsset}) => {
                                 title="Edit user"/>
                             <FontAwesomeIconWrapper icon={faHistory}/>
                             <FontAwesomeIconWrapper icon={faTrashAlt}
-                                                    onClick={() => deleteAsset(index)}
+                                                    onClick={() => deleteAsset(asset.id)}
                                                     title="Delete asset"/>
                         </Cell>
                     </Row>

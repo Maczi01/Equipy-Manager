@@ -32,7 +32,7 @@ const Paragraph = styled.p`
 const EditAssetView = ({match}) => {
     const selectedId = match.params.id;
     const context = useContext(AppContext);
-    const asset = context.asset.filter(a => a.id == selectedId)[0]
+    const asset = context.assets.filter(a => a.id == selectedId)[0]
 
     return (
         <ViewWrapper>

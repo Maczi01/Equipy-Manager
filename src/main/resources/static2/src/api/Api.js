@@ -20,7 +20,7 @@ export const Users = {
         return response.data;
     },
     deleteUser: async (userToRemove) => {
-        await axios.delete(`${BASE_URL}//users/${userToRemove.id}`)
+        await axios.delete(`${BASE_URL}/users/${userToRemove.id}`)
     },
 
 };
@@ -44,7 +44,7 @@ export const Equipy = {
         return response.data;
     },
     deleteAsset: async (assetToRemove) => {
-        await axios.delete(`${BASE_URL}/users/${assetToRemove.id}`)
+        await axios.delete(`${BASE_URL}/assets/${assetToRemove.id}`)
     },
 
 }

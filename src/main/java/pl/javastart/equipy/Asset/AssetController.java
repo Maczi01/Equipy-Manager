@@ -44,17 +44,20 @@ public class AssetController {
     //    TODO add response Entity
     @PutMapping("/{id}")
     public AssetDto updateAsset(@PathVariable Long id, @RequestBody AssetDto assetDto) {
-
         if (!id.equals(assetDto.getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany przedmiot musi mieć id zgodne z id ścieżki zasobu");
         }
         return assetService.update(assetDto);
     }
 
-
     @GetMapping("/{id}/assignments")
     public List<UserAssignmentDto> getAssetAssignments(@PathVariable Long id) {
         return assetService.getAssetAssignments(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteAsset(@PathVariable Long id) {
+        assetService.deleteAsset(id);
+    }
 }
+

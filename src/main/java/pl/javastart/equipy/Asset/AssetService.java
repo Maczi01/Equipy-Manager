@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.javastart.equipy.Exception.AssetNotFoundException;
 import pl.javastart.equipy.Exception.DuplicateSerialNumberException;
 import pl.javastart.equipy.Assignment.UserAssignementMapper;
+import pl.javastart.equipy.User.User;
 import pl.javastart.equipy.User.UserAssignmentDto;
 
 import java.util.List;
@@ -81,5 +82,11 @@ public class AssetService {
                 .stream()
                 .map(UserAssignementMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+
+    public void deleteAsset(Long id) {
+        Asset assetToDelete = assetRepository.getOne(id);
+        assetRepository.delete(assetToDelete );
     }
 };
