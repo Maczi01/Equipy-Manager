@@ -72,4 +72,9 @@ public class UserController{
     public List<UserAssignmentDto> getUserAssignments(@PathVariable Long id){
         return userService.getUserAssignments(id);
     }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+    }
 }

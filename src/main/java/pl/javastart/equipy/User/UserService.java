@@ -66,5 +66,9 @@ class UserService {
                 .collect(Collectors.toList());
     }
 
+    public void deleteUser(Long id) {
+        User userToDelete = userRepository.getOne(id);
+        userRepository.delete(userToDelete);
+    }
 }
 
