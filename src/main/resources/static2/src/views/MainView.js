@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg"
 import {Button} from "../components/Button";
@@ -22,15 +22,21 @@ const MainImage = styled.div`
   background-image: url(${background});
 `
 
-export const MainView = () => (
-    <AppContext.Consumer>
-        {(context) => (
-            <ViewWrapper>
-                <MainImage/>
-                <SearchBar/>
-                <UserTable users={context.users}/>
-                <Button><Link to="/adduser">Add new user</Link> </Button>
-            </ViewWrapper>
-        )}
-    </AppContext.Consumer>
-);
+export const MainView = () => {
+
+    const context = useContext(AppContext);
+
+
+    return (
+        <ViewWrapper>
+            <MainImage/>
+            <SearchBar/>
+            <UserTable
+                users={context.users}
+                edit={context.editUser}
+                deleteUser={context.deleteUser}
+            />
+            <Button><Link to="/adduser">Add new user</Link> </Button>
+        </ViewWrapper>
+    )
+}

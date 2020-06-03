@@ -1,15 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faEdit,
-    faHistory,
-    faTrash,
-    faTrashAlt,
-    faUserCog,
-    faUserEdit,
-    faUserMinus
-} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faHistory, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   margin: 0 auto;

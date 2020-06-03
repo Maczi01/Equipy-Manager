@@ -6,7 +6,8 @@ const Nav = styled.nav`
     width: 100vw;
     height:60px;
     margin: 0 auto;
-    background-color: #343a40;
+    //background-color: #343a40;
+      background: #27ae60;
     padding: 0;
 `
 

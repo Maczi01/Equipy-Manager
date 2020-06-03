@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUserCog, faUserEdit,faUserMinus} from "@fortawesome/free-solid-svg-icons";
+import {faUserCog, faUserEdit, faUserMinus} from "@fortawesome/free-solid-svg-icons";
+import {useHistory} from "react-router";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -41,65 +42,72 @@ const Cell = styled.div`
 
 const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
   margin: 0 20px;
+  cursor: pointer;
 `
 
 
-export const UserTable = ({users}) => (
-    <Wrapper>
+export const UserTable = ({users, deleteUser, editUser}) => {
+    const history = useHistory();
 
-        <TableWrapper>
+    return (
+        <Wrapper>
 
-            <HeaderAndRow>
-                <Cell>
-                    #
-                </Cell>
-                <Cell>
-                    Name
-                </Cell>
-                <Cell>
-                    Surname
-                </Cell>
-                <Cell>
-                    Id number
-                </Cell>
-                <Cell>
-                    Action
-                </Cell>
-            </HeaderAndRow>
+            <TableWrapper>
 
-
-            {users.map( (user, index )=>
-
-                <Row
-                    key={`user-${user.pesel}`}
-
-                >
+                <HeaderAndRow>
                     <Cell>
-                        {index+1}
+                        #
                     </Cell>
                     <Cell>
-                        {user.firstName}
+                        Name
                     </Cell>
                     <Cell>
-                        {user.lastName}
+                        Surname
                     </Cell>
                     <Cell>
-                        {user.pesel}
+                        Id number
                     </Cell>
                     <Cell>
-                        <FontAwesomeIconWrapper icon={faUserEdit}/>
-                        <FontAwesomeIconWrapper icon={faUserCog}/>
-                        <FontAwesomeIconWrapper icon={faUserMinus}/>
+                        Action
                     </Cell>
-                </Row>
-
-            )}
+                </HeaderAndRow>
 
 
+                {users.map((user, index) =>
+
+                    <Row
+                        key={`user-${user.pesel}`}
+
+                    >
+                        <Cell>
+                            {index + 1}
+                        </Cell>
+                        <Cell>
+                            {user.firstName}
+                        </Cell>
+                        <Cell>
+                            {user.lastName}
+                        </Cell>
+                        <Cell>
+                            {user.pesel}
+                        </Cell>
+                        <Cell>
+                            <FontAwesomeIconWrapper
+                                onClick={() => history.push(`/edituser/${user.id}`)}
+                                icon={faUserEdit} title="Edit user"> EDYTUJ!
+                            </FontAwesomeIconWrapper>
+                            <FontAwesomeIconWrapper icon={faUserCog} title="Manage assets"/>
+                            <FontAwesomeIconWrapper icon={faUserMinus}
+                                                    onClick={() => deleteUser(index)}
+                                                    title="Delete User"/>
+                        </Cell>
+                    </Row>
+                )}
 
 
-        </TableWrapper>
+            </TableWrapper>
 
 
-    </Wrapper>
-)
+        </Wrapper>
+    )
+}

@@ -15,11 +15,17 @@ export const CatchData = {
         const response = await axios.post("http://localhost:8080/api/assets", equipy);
         return response.data;
     },
-
-
-
+    editUser: async (userToUpdate) => {
+        if (!userToUpdate.id) {
+            throw new Error("This timebox haven't id!")
+        }
+        const response = await axios.put(`http://localhost:8080/api/users/${userToUpdate.id}`, userToUpdate)
+        return response.data;
+    },
+    deleteUser: async (userToRemove) => {
+        await axios.delete(`http://localhost:8080/api/users/${userToRemove.id}`)
+    },
     getEquipy: async () => {
-        // const response = await axios.get(`${BASE_URL}/assets`);
         const response = await axios.get("http://localhost:8080/api/assets");
         return response.data;
     }

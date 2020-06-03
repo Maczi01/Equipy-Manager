@@ -7,8 +7,8 @@ const FormWrapper = styled.div`
    display: flex;
    flex-direction: column;
    width: 45vw;
-   margin: 0 auto;ó
-`
+   margin: 0 auto;
+`;
 
 
 const Input = styled.input`
@@ -17,28 +17,28 @@ const Input = styled.input`
   border: 1px solid #ced4da;
   margin: 15px 0;
   font-size: 18px;
-`
+`;
 
 const FormHeader = styled.h2`
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-`
+`;
 
-export const AddUser = ({addUser}) => {
+export const EditUser = ({editUser, user}) => {
 
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [pesel, setPesel] = useState("")
+    const [firstName, setFirstName] = useState(user.firstName)
+    const [lastName, setLastName] = useState(user.lastName)
+    const [pesel, setPesel] = useState(user.pesel)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addUser({firstName, lastName, pesel});
+        editUser({...user, firstName, lastName, pesel});
     }
 
     return (
         <FormWrapper>
-            <FormHeader>New user</FormHeader>
+            <FormHeader>Edit user {user.id}</FormHeader>
             <form onSubmit={handleSubmit}>
                 <label> </label>
                 <Input
@@ -62,4 +62,4 @@ export const AddUser = ({addUser}) => {
         </FormWrapper>
 
     )
-}
+};

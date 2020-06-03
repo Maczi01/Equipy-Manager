@@ -1,11 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg";
-import {Button} from "../components/Button";
 import AppContext from "../context/context";
-import {SearchBar} from "../components/SearchBar";
-import {UserTable} from "../components/UserTable";
-import {AddUser} from "../components/AddUser";
+import {AddUser} from "../components/AddUser";  
 
 const ViewWrapper = styled.div`
    margin: 0 auto;
