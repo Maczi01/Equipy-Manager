@@ -21,7 +21,7 @@ public class Asset {
     @JoinColumn(name="category_id")
     private Category category;
     @OneToMany(mappedBy = "asset")
-    private List<Assignment> assignmentList = new ArrayList<>();
+    private List<Assignment> assignments = new ArrayList<>();
 
 
     public Long getId() {
@@ -64,6 +64,14 @@ public class Asset {
         return category;
     }
 
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,14 +87,6 @@ public class Asset {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, serialNumber, category);
-    }
-
-    public List<Assignment> getAssignmentList() {
-        return assignmentList;
-    }
-
-    public void setAssignmentList(List<Assignment> assignmentList) {
-        this.assignmentList = assignmentList;
     }
 }
 

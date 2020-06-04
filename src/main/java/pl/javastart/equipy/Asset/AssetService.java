@@ -75,18 +75,19 @@ public class AssetService {
         return assetMapper.toDto(savedAsset);
     }
 
-    public List<UserAssignmentDto> getAssetAssignments(Long id) {
-        return assetRepository.findById(id)
-                .map(Asset::getAssignmentList)
-                .orElseThrow(AssetNotFoundException::new)
-                .stream()
-                .map(UserAssignementMapper::toDto)
-                .collect(Collectors.toList());
-    }
-
-
     public void deleteAsset(Long id) {
         Asset assetToDelete = assetRepository.getOne(id);
         assetRepository.delete(assetToDelete );
+    }
+
+
+
+    public List<AssetAssignmentDto> getAssetAssignments(Long id) {
+        return assetRepository.findById(id)
+                .map(Asset::getAssignments)
+                .orElseThrow(AssetNotFoundException::new)
+                .stream()
+                .map(AssetAssignmentMapper::toDto)
+                .collect(Collectors.toList());
     }
 };

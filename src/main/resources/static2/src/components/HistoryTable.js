@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useContext} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faHistory, faTrashAlt, faUserCog, faUserEdit, faUserMinus} from "@fortawesome/free-solid-svg-icons";
+import {faUserCog, faUndo, faUserMinus, faEdit, faHistory, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router";
+import AppContext from "../context/context";
+import {Assignment} from "../api/Api";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -22,7 +24,7 @@ const HeaderAndRow = styled.div`
   display: table-row;
   font-weight: 900;
   color: #ffffff;
-  background: #ea6153;
+  background: #27ae60;
 `;
 
 const Row = styled.div`
@@ -38,24 +40,13 @@ const Cell = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
-`
+`;
 
-const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
-  margin: 0 20px;
-  cursor: pointer;
-`
-
-export const EquipyTable = ({assets, deleteAsset}) => {
-    const history = useHistory();
+export const HistoryTable = ({asset, assignments}) => {
     return (
         <Wrapper>
-
             <TableWrapper>
-
                 <HeaderAndRow>
-                    <Cell>
-                        #
-                    </Cell>
                     <Cell>
                         Name
                     </Cell>
@@ -68,44 +59,52 @@ export const EquipyTable = ({assets, deleteAsset}) => {
                     <Cell>
                         Category
                     </Cell>
-                    <Cell>
-                        Action
-                    </Cell>
                 </HeaderAndRow>
-                {assets.map((asset, index) =>
+                <Row>
+                    <Cell>
+                        {asset.name}
+                    </Cell>
+                    <Cell>
+                        {`${asset.description.substring(0, 20)}...`}
+                    </Cell>
+                    <Cell>
+                        {asset.serialNumber}
+                    </Cell>
+                    <Cell>
+                        {asset.category}
+                    </Cell>
+
+                </Row>
+            </TableWrapper>
+
+
+            <TableWrapper>
+
+                {assignments.map((assignment, index) =>
                     <Row
-                        key={`asset-${asset.serialNumber}`}
-                    >
+                        key={`user-${index}`}>
                         <Cell>
                             {index + 1}
                         </Cell>
-                        <Cell>
-                            {asset.name}
-                        </Cell>
-                        <Cell>
-                            {`${asset.description.substring(0, 20)}...`}
-                        </Cell>
-                        <Cell>
-                            {asset.serialNumber}
-                        </Cell>
-                        <Cell>
-                            {asset.category}
-                        </Cell>
-                        <Cell>
-                            <FontAwesomeIconWrapper
-                                icon={faEdit}
-                                onClick={() => history.push(`/editasset/${asset.id}`)}
-                                title="Edit user"/>
-                            <FontAwesomeIconWrapper icon={faHistory}
-                                                    onClick={() => history.push(`/assignmenthistory/${asset.id}`)}
 
-                            />
-                            <FontAwesomeIconWrapper icon={faTrashAlt}
-                                                    onClick={() => deleteAsset(asset.id)}
-                                                    title="Delete asset"/>
+                        <Cell>
+                            {assignment.assetName}
                         </Cell>
+
+                        <Cell>
+                            {assignment.assetName}
+                        </Cell>
+                        <Cell>
+                            {assignment.start}
+                        </Cell>
+                        <Cell>
+                            {assignment.end}
+                        </Cell>
+
                     </Row>
-                )}
+                )
+                }
+
             </TableWrapper>
 
 

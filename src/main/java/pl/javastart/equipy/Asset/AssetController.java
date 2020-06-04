@@ -32,7 +32,6 @@ public class AssetController {
     @GetMapping("/{id}")
     public AssetDto findByNameOrSerialNumber(@PathVariable Long id) {
         return assetService.getAssetById(id).orElse(null);
-
     }
 
     //    TODO add response Entity
@@ -51,7 +50,7 @@ public class AssetController {
     }
 
     @GetMapping("/{id}/assignments")
-    public List<UserAssignmentDto> getAssetAssignments(@PathVariable Long id) {
+    public List<AssetAssignmentDto> getAssetAssignments(@PathVariable Long id) {
         return assetService.getAssetAssignments(id);
     }
 

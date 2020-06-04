@@ -43,19 +43,25 @@ export const Equipy = {
         const response = await axios.put(`${BASE_URL}/assets/${assetToUpdate.id}`, assetToUpdate)
         return response.data;
     },
-
     deleteAsset: async (assetToRemove) => {
         await axios.delete(`${BASE_URL}/assets/${assetToRemove.id}`)
     },
+    assignmentHistory: async (id) => {
+        await axios.delete(`${BASE_URL}/assets/${id}`)
+    },
 }
 export const Assignment = {
+    //TODO zmienić nazwę na assign to user
     getAssignment: async (id) => {
         const response = await axios.get(`${BASE_URL}/users/${id}/assignments`);
         return response.data;
     },
-    returnAsset: async(id) => {
+    returnAsset: async (id) => {
         await axios.post(`${BASE_URL}/assignments/${id}/end`)
-
-    }
+    },
+    // assignAssetToUser: async(assignment) => {
+    //     const response = await axios.post(`${BASE_URL}/assignments/`, assignment);
+    //     return response.data;
+    // }
 
 }

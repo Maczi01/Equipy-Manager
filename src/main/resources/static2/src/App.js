@@ -12,6 +12,7 @@ import AppContext from './context/context'
 import EditUserView from "./views/EditUserView";
 import EditAssetView from "./views/EditAssetView";
 import {UserAssignmentView} from "./views/UserAssignmentView";
+import {AssignmentHistoryView} from "./views/AssignmentHistoryView";
 
 class App extends Component {
 
@@ -113,6 +114,7 @@ class App extends Component {
                     <Route path="/edituser/:id" component={EditUserView}/>
                     <Route path="/editasset/:id" component={EditAssetView}/>
                     <Route path="/userassignment/:id" component={UserAssignmentView}/>
+                    <Route path="/assignmenthistory/:id" component={AssignmentHistoryView}/>
                 </AppContext.Provider>
             </BrowserRouter>
         );

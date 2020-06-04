@@ -38,11 +38,11 @@ public class UserController{
         if(user.getId() != null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt nie może mieć ustawionego id");
         UserDto savedUser = userService.saveUser(user);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedUser.getId())
-                .toUri();
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentRequest()
+//                .path("/{id}")
+//                .buildAndExpand(savedUser.getId())
+//                .toUri();
 //        return ResponseEntity.created(location).body(savedUser);
         return ResponseEntity.ok(savedUser);
 
