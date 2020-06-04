@@ -79,6 +79,29 @@ export const HistoryTable = ({asset, assignments}) => {
 
 
             <TableWrapper>
+                <HeaderAndRow>
+                    <Cell>
+                        index
+                    </Cell>
+                    <Cell>
+                        user id
+                    </Cell>
+                    <Cell>
+                        First name
+                    </Cell>
+                    <Cell>
+                        Last name
+                    </Cell>
+                    <Cell>
+                        Pesel
+                    </Cell>
+                    <Cell>
+                        Start date
+                    </Cell>
+                    <Cell>
+                        End date
+                    </Cell>
+                </HeaderAndRow>
 
                 {assignments.map((assignment, index) =>
                     <Row
@@ -88,11 +111,17 @@ export const HistoryTable = ({asset, assignments}) => {
                         </Cell>
 
                         <Cell>
-                            {assignment.assetName}
+                            {assignment.userId}
                         </Cell>
 
                         <Cell>
-                            {assignment.assetName}
+                            {assignment.firstName}
+                        </Cell>
+                        <Cell>
+                            {assignment.lastName}
+                        </Cell>
+                        <Cell>
+                            {assignment.pesel}
                         </Cell>
                         <Cell>
                             {assignment.start}

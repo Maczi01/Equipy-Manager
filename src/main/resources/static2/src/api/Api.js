@@ -47,7 +47,9 @@ export const Equipy = {
         await axios.delete(`${BASE_URL}/assets/${assetToRemove.id}`)
     },
     assignmentHistory: async (id) => {
-        await axios.delete(`${BASE_URL}/assets/${id}`)
+        const response = await axios.get(`${BASE_URL}/assets/${id}/assignments`)
+        // const response = await axios.get("http://localhost:8080/api/assets/1/assignments")
+        return response.data
     },
 }
 export const Assignment = {

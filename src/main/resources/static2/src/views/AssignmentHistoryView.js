@@ -27,7 +27,6 @@ export const AssignmentHistoryView = ({match}) => {
     console.log({selectedId});
     const asset = context.assets.filter(i => i.id == selectedId)[0]
 
-    // const returnAsset = (id) =>  Assignment.returnAsset(id)
     const [assignments, setAssignments] = useState([]);
 
     useEffect(() => {
@@ -35,7 +34,6 @@ export const AssignmentHistoryView = ({match}) => {
             const response = await Equipy.assignmentHistory(selectedId);
             setAssignments(response)
         }
-
         fetchData();
     }, []);
     console.log(assignments)
