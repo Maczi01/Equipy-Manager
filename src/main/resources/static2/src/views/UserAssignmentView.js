@@ -29,18 +29,16 @@ export const UserAssignmentView = ({match}) => {
     const selectedId = match.params.id;
     console.log({selectedId})
     const user = context.users.filter(i => i.id == selectedId)[0]
-
+    const returnAsset = (id) =>  Assignment.returnAsset(id)
     const [assignments, setAssignments] = useState([]);
 
-
-    useEffect(async () => {
-        const a = await Assignment.getUsers(1);
-        setAssignments(a)
+    useEffect( () => {
+        async function fetchData() {
+            const response = await Assignment.getAssignment(selectedId);
+            setAssignments(response)
+        }
+        fetchData();
     }, []);
-    //
-    // useEffect(() => {
-    //     fetchWallpapers();
-    // }, []);
 
     return (
         <ViewWrapper>
@@ -48,6 +46,7 @@ export const UserAssignmentView = ({match}) => {
             <AssignmentTable
                 user={user}
                 assignments={assignments}
+                returnAsset={returnAsset}
             />
         </ViewWrapper>
     )

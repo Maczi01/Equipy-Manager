@@ -49,8 +49,13 @@ export const Equipy = {
     },
 }
 export const Assignment = {
-    getUsers: async (id) => {
+    getAssignment: async (id) => {
         const response = await axios.get(`${BASE_URL}/users/${id}/assignments`);
         return response.data;
     },
+    returnAsset: async(id) => {
+        await axios.post(`${BASE_URL}/assignments/${id}/end`)
+
+    }
+
 }

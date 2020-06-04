@@ -48,7 +48,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const AssignmentTable = ({assignments, user}) => {
+export const AssignmentTable = ({assignments, user, returnAsset}) => {
     return (
         <Wrapper>
             <TableWrapper>
@@ -78,6 +78,7 @@ export const AssignmentTable = ({assignments, user}) => {
                 </Row>
             </TableWrapper>
 
+
             <TableWrapper>
                 <HeaderAndRow>
                     <Cell>
@@ -101,33 +102,37 @@ export const AssignmentTable = ({assignments, user}) => {
                 </HeaderAndRow>
 
 
-                {assignments.map((assignment, index) =>
-                    <Row
-                        key={`user-${index}`}>
-                        <Cell>
-                            {index + 1}
-                        </Cell>
+                {
+                    assignments.map((assignment, index) =>
+                        <Row
+                            key={`user-${index}`}>
+                            <Cell>
+                                {index + 1}
+                            </Cell>
 
-                        <Cell>
-                            {assignment.assetName}
-                        </Cell>
+                            <Cell>
+                                {assignment.assetName}
+                            </Cell>
 
-                        <Cell>
-                            {assignment.assetName}
-                        </Cell>
-                        <Cell>
-                            {assignment.start}
-                        </Cell>
-                        <Cell>
-                            {assignment.end}
-                        </Cell>
-                        <Cell>
-                            {assignment.end ? null : <FontAwesomeIconWrapper icon={faUndo}/> }
-                        </Cell>
-                    </Row>
-                )
+                            <Cell>
+                                {assignment.assetName}
+                            </Cell>
+                            <Cell>
+                                {assignment.start}
+                            </Cell>
+                            <Cell>
+                                {assignment.end}
+                            </Cell>
+                            <Cell>
+                                {assignment.end ? null : <FontAwesomeIconWrapper
+                                    title="Go back"
+                                    icon={faUndo}
+                                    onClick={() => returnAsset(assignment.id)}
+                                />}
+                            </Cell>
+                        </Row>
+                    )
                 }
-
 
             </TableWrapper>
 
