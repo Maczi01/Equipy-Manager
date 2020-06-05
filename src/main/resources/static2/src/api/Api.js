@@ -35,7 +35,7 @@ export const Equipy = {
         return response.data;
     },
     getAssetByNameOrSerialNumber: async (nameOrSerialNumber) => {
-        const response = await axios.get(`${BASE_URL}/users?text=${nameOrSerialNumber}`);
+        const response = await axios.get(`${BASE_URL}/assets?text=${nameOrSerialNumber}`);
         return response.data;
     },
 

@@ -25,6 +25,11 @@ const FormHeader = styled.h2`
   text-align: center;
 `;
 
+const Form = styled.h2`
+  display: flex;
+  flex-direction: column;
+`
+
 export const EditUser = ({editUser, user}) => {
 
     const [firstName, setFirstName] = useState(user.firstName)
@@ -39,7 +44,7 @@ export const EditUser = ({editUser, user}) => {
     return (
         <FormWrapper>
             <FormHeader>Edit user {user.id}</FormHeader>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <label> </label>
                 <Input
                     onChange={e => setFirstName(e.target.value)}
@@ -58,7 +63,7 @@ export const EditUser = ({editUser, user}) => {
                     placeholder="Id number"/>
                 <label> </label>
                 <Button>Save</Button>
-            </form>
+            </Form>
         </FormWrapper>
 
     )

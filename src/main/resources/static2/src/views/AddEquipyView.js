@@ -9,7 +9,7 @@ const ViewWrapper = styled.div`
    display: flex;
    flex-direction: column;
    width: 80vw;
-`
+`;
 
 
 const MainImage = styled.div`
@@ -17,15 +17,7 @@ const MainImage = styled.div`
   height: 40vh;
   border-radius: 10px;
   background-image: url(${background});
-`
-
-const Input = styled.input`
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #ced4da;
-  margin: 15px 0;
-  font-size: 18px;
-`
+`;
 
 
 export const AddEquipyView = () => (
@@ -37,4 +29,4 @@ export const AddEquipyView = () => (
             </ViewWrapper>
         )}
     </AppContext.Consumer>
-)
+);

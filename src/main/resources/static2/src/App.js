@@ -4,6 +4,7 @@ import {Header} from "./components/Header";
 import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {MainView} from "./views/MainView";
+import {EquipyView} from "./views/EquipyView";
 import {AddEquipyView} from "./views/AddEquipyView";
 import {AddUserView} from "./views/AddUserView";
 import {Users, Equipy, Assignment} from "./api/Api";
@@ -83,11 +84,7 @@ class App extends Component {
                 const assets = this.state.assets.filter((asset, index) => asset.id !== indexToRemove)
                 return {assets}
             }))
-    }
-
-    // getAssignment = (id) => {
-    //    return Assignment.getUsers(id);
-    // }
+    };
 
     render() {
         const contextElements = {
@@ -99,7 +96,6 @@ class App extends Component {
             addEquipy: this.addEquipy,
             editAsset: this.editAsset,
             deleteAsset: this.deleteAsset,
-            // assignments: this.getAssignment,
         }
 
         return (
@@ -118,7 +114,6 @@ class App extends Component {
             </BrowserRouter>
         );
     }
-
 }
 
 export default App;

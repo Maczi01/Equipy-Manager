@@ -42,6 +42,12 @@ const Cell = styled.div`
   align-items: center;
 `;
 
+
+const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
+  margin: 0 20px;
+  cursor: pointer;
+`
+
 export const HistoryTable = ({asset, assignments}) => {
     return (
         <Wrapper>
@@ -79,6 +85,7 @@ export const HistoryTable = ({asset, assignments}) => {
 
 
             <TableWrapper>
+                <h3>Assignment history</h3>
                 <HeaderAndRow>
                     <Cell>
                         index
@@ -100,6 +107,9 @@ export const HistoryTable = ({asset, assignments}) => {
                     </Cell>
                     <Cell>
                         End date
+                    </Cell>
+                    <Cell>
+                        Action
                     </Cell>
                 </HeaderAndRow>
 
@@ -128,6 +138,14 @@ export const HistoryTable = ({asset, assignments}) => {
                         </Cell>
                         <Cell>
                             {assignment.end}
+                        </Cell>
+                        <Cell>
+                            {assignment.end ? null :
+                            <FontAwesomeIconWrapper
+                                icon={faHistory}
+                                //                     onClick={() => history.push(`/assignmenthistory/${asset.id}`)}
+
+                            />  }
                         </Cell>
 
                     </Row>

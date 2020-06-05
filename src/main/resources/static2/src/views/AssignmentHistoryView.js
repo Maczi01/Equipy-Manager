@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import background from "../assets/background.jpg"
 import AppContext from "../context/context";
 import {AssignmentTable} from "../components/AssignmentTable";
-import {Assignment, Equipy} from "../api/Api";
+import {Assignment, Equipy, Users as User} from "../api/Api";
 import {HistoryTable} from "../components/HistoryTable";
+import {UserTable} from "../components/UserTable";
+import {SearchBar} from "../components/SearchBar";
 
 
 const ViewWrapper = styled.div`
@@ -24,18 +26,25 @@ const MainImage = styled.div`
 export const AssignmentHistoryView = ({match}) => {
     const context = useContext(AppContext);
     const selectedId = match.params.id;
-    console.log({selectedId});
     const asset = context.assets.filter(i => i.id == selectedId)[0]
 
     const [assignments, setAssignments] = useState([]);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             const response = await Equipy.assignmentHistory(selectedId);
             setAssignments(response)
         }
+
         fetchData();
     }, []);
+
+    const catchText = async (text) => {
+        const response = await User.getUserByLastName(text);
+        setUsers(response)
+    };
+
     console.log(assignments)
     return (
         <ViewWrapper>
@@ -44,6 +53,15 @@ export const AssignmentHistoryView = ({match}) => {
                 asset={asset}
                 assignments={assignments}
             />
+            <SearchBar
+                catchText={catchText}
+            />
+
+            {users.length ?
+                <UserTable
+                    users={users}
+                /> : null
+            }
         </ViewWrapper>
     )
 }

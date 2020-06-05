@@ -48,6 +48,11 @@ const Textarea = styled.textarea`
   font-size: 18px;
 `
 
+const Form = styled.h2`
+  display: flex;
+  flex-direction: column;
+`
+
 
 export const AddEquipy = ({addEquipy}) => {
 
@@ -65,7 +70,7 @@ export const AddEquipy = ({addEquipy}) => {
         <ViewWrapper>
             <FormWrapper>
                 <FormHeader>New user</FormHeader>
-                <form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <label> </label>
                     <Input
                         onChange={e => setName(e.target.value)}
@@ -91,7 +96,7 @@ export const AddEquipy = ({addEquipy}) => {
                         <option>Laptops</option>
                     </Select>
                     <Button>Save</Button>
-                </form>
+                </Form>
             </FormWrapper>
         </ViewWrapper>
 
