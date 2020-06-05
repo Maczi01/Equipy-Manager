@@ -64,6 +64,10 @@ export const Assignment = {
         const response = await axios.get(`${BASE_URL}/users/${id}/assignments`);
         return response.data;
     },
+    assignAssetToUser: async (assignment) => {
+        const response = await axios.post(`${BASE_URL}/assignments`, assignment);
+        return response.data;
+    },
     returnAsset: async (id) => {
         await axios.post(`${BASE_URL}/assignments/${id}/end`)
     },

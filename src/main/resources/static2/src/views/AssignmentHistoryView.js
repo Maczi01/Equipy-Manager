@@ -7,6 +7,7 @@ import {Assignment, Equipy, Users as User} from "../api/Api";
 import {HistoryTable} from "../components/HistoryTable";
 import {UserTable} from "../components/UserTable";
 import {SearchBar} from "../components/SearchBar";
+import {UserTable2} from "../components/UserTable2";
 
 
 const ViewWrapper = styled.div`
@@ -44,24 +45,41 @@ export const AssignmentHistoryView = ({match}) => {
         const response = await User.getUserByLastName(text);
         setUsers(response)
     };
+    const finishAssignment = async (id) => {
+        const response = await Assignment.returnAsset(id);
+        const res = await Equipy.assignmentHistory(selectedId);
+        setAssignments(res)
+        // setUsers(response)
+    };
 
-    console.log(assignments)
+    const assignUser = async (id) => {
+        console.log(id)
+        const data = new Date();
+        const assignment = {startData: data, endData: null, userId: id, assetId: asset.id}
+        const response = await Assignment.assignAssetToUser(assignment)
+        // return response.data;
+    }
+
+    console.log(assignments);
     return (
         <ViewWrapper>
             <MainImage/>
-            <HistoryTable
-                asset={asset}
-                assignments={assignments}
-            />
             <SearchBar
                 catchText={catchText}
             />
-
             {users.length ?
-                <UserTable
+                <UserTable2
+                    assignUser={assignUser}
                     users={users}
                 /> : null
             }
+
+            <HistoryTable
+                asset={asset}
+                assignments={assignments}
+                finishAssignment={finishAssignment}
+            />
+
         </ViewWrapper>
     )
 }
