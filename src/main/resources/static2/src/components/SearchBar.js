@@ -1,6 +1,6 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 
 
@@ -72,15 +72,28 @@ const Label = styled.label`
 `
 
 
+export const SearchBar = ({catchText}) => {
 
-export const SearchBar = () => (
-    <SearchWrapper>
-        <Label>
-            <SearchInput type="search" className="search-field" placeholder="Type something..."/>
-        </Label>
-        <InputButton type="submit" className="search-submit button" value="&#xf002">
-            <FontAwesomeIcon icon={faSearch}/>
-        </InputButton>
-    </SearchWrapper>
+    const [text, setText] = useState("");
 
-)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        catchText(text);
+    }
+
+    return (
+        <SearchWrapper>
+            <form onSubmit={handleSubmit}>
+                <Label>
+                    <SearchInput
+                        onChange={e => setText(e.target.value)}
+
+                        placeholder="Type something..."/>
+                </Label>
+                <InputButton type="submit" className="search-submit button" value="&#xf002">
+                    <FontAwesomeIcon icon={faSearch}/>
+                </InputButton>
+            </form>
+        </SearchWrapper>
+    )
+}

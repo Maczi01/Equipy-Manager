@@ -107,7 +107,7 @@ class App extends Component {
             <BrowserRouter>
                 <AppContext.Provider value={contextElements}>
                     <Header/>
-                    <Route exact path="/" component={MainView}/>
+                    <Route exact path="/" component={MainView}/>w
                     <Route path="/equipy" component={EquipyView}/>
                     <Route path="/addequipy" component={AddEquipyView}/>
                     <Route path="/adduser" component={AddUserView}/>
