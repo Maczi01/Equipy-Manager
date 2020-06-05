@@ -4,7 +4,6 @@ import {Header} from "./components/Header";
 import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {MainView} from "./views/MainView";
-import {EquipyView} from "./views/EquipyView";
 import {AddEquipyView} from "./views/AddEquipyView";
 import {AddUserView} from "./views/AddUserView";
 import {Users, Equipy, Assignment} from "./api/Api";

@@ -34,6 +34,10 @@ export const Equipy = {
         const response = await axios.get(`${BASE_URL}/assets`);
         return response.data;
     },
+    getAssetByNameOrSerialNumber: async (nameOrSerialNumber) => {
+        const response = await axios.get(`${BASE_URL}/users?text=${nameOrSerialNumber}`);
+        return response.data;
+    },
 
     addEquipy: async (equipy) => {
         const response = await axios.post(`${BASE_URL}/assets`, equipy);

@@ -71,7 +71,6 @@ const Label = styled.label`
   border-bottom-right-radius: 0;
 `
 
-
 export const SearchBar = ({catchText}) => {
 
     const [text, setText] = useState("");
