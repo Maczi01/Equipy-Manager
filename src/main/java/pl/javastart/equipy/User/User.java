@@ -1,5 +1,6 @@
 package pl.javastart.equipy.User;
 
+import org.hibernate.annotations.Cascade;
 import pl.javastart.equipy.Assignment.Assignment;
 
 import javax.persistence.*;
