@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Assignment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

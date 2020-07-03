@@ -59,7 +59,7 @@ export const Equipy = {
     },
 };
 export const Assignment = {
-    //TODO zmienić nazwę na assign to user
+    //TODO change name na assign to user
     getAssignment: async (id) => {
         const response = await axios.get(`${BASE_URL}/users/${id}/assignments`);
         return response.data;

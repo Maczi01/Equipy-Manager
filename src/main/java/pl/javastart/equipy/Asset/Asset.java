@@ -89,4 +89,3 @@ public class Asset {
         return Objects.hash(id, name, description, serialNumber, category);
     }
 }
-

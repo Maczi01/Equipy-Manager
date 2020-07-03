@@ -1,6 +1,5 @@
 package pl.javastart.equipy.User;
 
-import org.hibernate.annotations.Cascade;
 import pl.javastart.equipy.Assignment.Assignment;
 
 import javax.persistence.*;
@@ -8,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 @Entity
 public class User {
