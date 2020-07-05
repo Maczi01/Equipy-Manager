@@ -40,7 +40,7 @@ export const AssignmentHistoryView = ({match}) => {
             setAssignments(response)
         }
         fetchData();
-    });
+    },[context.assignments.length] );
     // },[assignments]);
 
     const catchText = async (text) => {

@@ -37,7 +37,7 @@ export const UserAssignmentView = ({match}) => {
             setAssignments(response)
         }
         fetchData();
-    },[assignments]);
+    },[context.assignments.length]);
     console.log("lol")
 
     return (

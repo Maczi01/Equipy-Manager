@@ -19,6 +19,7 @@ class App extends Component {
     state = {
         users: [],
         assets: [],
+        assignments: []
     }
 
     componentDidMount() {
@@ -27,6 +28,9 @@ class App extends Component {
             .catch(error => console.log("Can not load data"));
         Equipy.getEquipy()
             .then(assets => this.setState({assets}))
+            .catch(error => console.log("Can not load data"));
+        Assignment.getAssignment()
+            .then(assignments => this.setState({assignments}))
             .catch(error => console.log("Can not load data"));
     }
 
@@ -95,6 +99,7 @@ class App extends Component {
             addEquipy: this.addEquipy,
             editAsset: this.editAsset,
             deleteAsset: this.deleteAsset,
+            assignments: this.state.assignments,
         }
 
         return (

@@ -10,5 +10,5 @@ export const Button = styled.button`
   text-decoration: none;
   border: none;
   border-radius: 8px;
-
+  
 `

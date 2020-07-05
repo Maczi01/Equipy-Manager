@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg"
-import {Button} from "../components/Button";
 import {UserTable} from "../components/UserTable";
 import {Link} from "react-router-dom";
 import {SearchBar} from "../components/SearchBar";
@@ -30,13 +29,16 @@ export const MainView = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await User.getUserByLastName("");
-            setUsers(response)
+            async function fetchData() {
+                const response = await User.getUserByLastName("")
+                setUsers(response)
+            }
             setLoading(true)
-        }
-        fetchData();
-    }, [context.users]);
+            fetchData();
+        },[context.users.length]
+    )
+    ;
+// }, [context.users]);
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);
@@ -56,7 +58,7 @@ export const MainView = () => {
                         edit={context.editUser}
                         deleteUser={context.deleteUser}
                     />
-                    <Button><Link to="/adduser">Add new user</Link> </Button>
+                    <Link to="/adduser">Add new user</Link>
                 </>
                 :
                 <ClipLoader
@@ -65,8 +67,6 @@ export const MainView = () => {
                     css={{"margin": "0 auto",}}
                 />
             }
-
-
         </ViewWrapper>
     )
 }
