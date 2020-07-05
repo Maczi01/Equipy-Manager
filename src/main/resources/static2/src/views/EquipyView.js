@@ -8,6 +8,7 @@ import {SearchBar} from "../components/SearchBar";
 import AppContext from "../context/context";
 import {UserTable} from "../components/UserTable";
 import {Equipy} from "../api/Api";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ViewWrapper = styled.div`
    margin: 0 auto;
@@ -27,12 +28,15 @@ export const EquipyView = () => {
 
     const context = useContext(AppContext);
     const [assets, setAssets] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             const response = await Equipy.getAssetByNameOrSerialNumber("");
-            setAssets(response)
+            setAssets(response);
+            setLoading(true);
         }
+
         fetchData();
     });
 
@@ -46,12 +50,22 @@ export const EquipyView = () => {
             <SearchBar
                 catchText={catchText}
             />
-            <EquipyTable
-                assets={assets}
-                edit={context.editAsset}
-                deleteAsset={context.deleteAsset}
-            />
-            <Button><Link to="/addequipy">Add new equipy</Link> </Button>
+            {loading ?
+                <>
+                    <EquipyTable
+                        assets={assets}
+                        edit={context.editAsset}
+                        deleteAsset={context.deleteAsset}
+                    />
+                    < Button> < Link to="/addequipy"> Add new equipy</Link> </Button>
+                </>
+                :
+                <ClipLoader
+                    size={50}
+                    color={"#123abc"}
+                    css={{"margin": "0 auto",}}
+                />
+            }
         </ViewWrapper>
     )
 };

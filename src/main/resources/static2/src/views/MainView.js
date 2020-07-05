@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {SearchBar} from "../components/SearchBar";
 import AppContext from "../context/context";
 import {Users as User} from "../api/Api";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const ViewWrapper = styled.div`
@@ -14,7 +15,7 @@ const ViewWrapper = styled.div`
    display: flex;
    flex-direction: column;
    width: 80vw;
-`
+`;
 
 const MainImage = styled.div`
   margin: 5px;
@@ -27,11 +28,13 @@ export const MainView = () => {
 
     const context = useContext(AppContext);
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             const response = await User.getUserByLastName("");
             setUsers(response)
+            setLoading(true)
         }
         fetchData();
     });
@@ -47,12 +50,24 @@ export const MainView = () => {
             <SearchBar
                 catchText={catchText}
             />
-            <UserTable
-                users={users}
-                edit={context.editUser}
-                deleteUser={context.deleteUser}
-            />
-            <Button><Link to="/adduser">Add new user</Link> </Button>
+            {loading ?
+               <>
+                   <UserTable
+                       users={users}
+                       edit={context.editUser}
+                       deleteUser={context.deleteUser}
+                   />
+                   <Button><Link to="/adduser">Add new user</Link> </Button>
+               </>
+                :
+                <ClipLoader
+                    size={50}
+                    color={"#123abc"}
+                    css={{"margin" :"0 auto",}}
+                />
+            }
+
+
         </ViewWrapper>
     )
 }

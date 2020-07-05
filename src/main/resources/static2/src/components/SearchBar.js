@@ -5,13 +5,14 @@ import styled from 'styled-components';
 
 
 const SearchWrapper = styled.div`
-width: 400px;
-display: flex;
-justify-content: center;
-align-content: center;
-text-align:  center;
-margin:  0 auto;
-margin-top:  12px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align:  center;
+  margin:  0 auto;
+  margin-top:  12px;
+  margin-bottom: 20px;
 `
 const SearchInput = styled.input`
   margin-bottom: 0;
