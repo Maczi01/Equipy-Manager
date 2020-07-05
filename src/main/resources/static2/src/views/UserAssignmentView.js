@@ -27,7 +27,6 @@ const MainImage = styled.div`
 export const UserAssignmentView = ({match}) => {
     const context = useContext(AppContext);
     const selectedId = match.params.id;
-    console.log({selectedId});
     const user = context.users.filter(i => i.id == selectedId)[0]
     const returnAsset = (id) => Assignment.returnAsset(id)
     const [assignments, setAssignments] = useState([]);
@@ -37,9 +36,9 @@ export const UserAssignmentView = ({match}) => {
             const response = await Assignment.getAssignment(selectedId);
             setAssignments(response)
         }
-
         fetchData();
-    });
+    },[assignments]);
+    console.log("lol")
 
     return (
         <ViewWrapper>

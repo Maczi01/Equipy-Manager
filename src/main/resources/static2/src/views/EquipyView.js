@@ -33,12 +33,12 @@ export const EquipyView = () => {
     useEffect(() => {
         async function fetchData() {
             const response = await Equipy.getAssetByNameOrSerialNumber("");
-            setAssets(response);
+            setAssets(response)
             setLoading(true);
         }
 
         fetchData();
-    });
+    }, [context.assets]);
 
     const catchText = async (text) => {
         const response = await Equipy.getAssetByNameOrSerialNumber(text);
@@ -57,7 +57,6 @@ export const EquipyView = () => {
                         edit={context.editAsset}
                         deleteAsset={context.deleteAsset}
                     />
-                    < Button> < Link to="/addequipy"> Add new equipy</Link> </Button>
                 </>
                 :
                 <ClipLoader
@@ -66,6 +65,7 @@ export const EquipyView = () => {
                     css={{"margin": "0 auto",}}
                 />
             }
+            < Button> < Link to="/addequipy"> Add new equipy</Link> </Button>
         </ViewWrapper>
     )
 };

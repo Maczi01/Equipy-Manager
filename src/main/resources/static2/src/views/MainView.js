@@ -9,7 +9,6 @@ import AppContext from "../context/context";
 import {Users as User} from "../api/Api";
 import ClipLoader from "react-spinners/ClipLoader";
 
-
 const ViewWrapper = styled.div`
    margin: 0 auto;
    display: flex;
@@ -37,7 +36,7 @@ export const MainView = () => {
             setLoading(true)
         }
         fetchData();
-    });
+    }, [context.users]);
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);
@@ -51,19 +50,19 @@ export const MainView = () => {
                 catchText={catchText}
             />
             {loading ?
-               <>
-                   <UserTable
-                       users={users}
-                       edit={context.editUser}
-                       deleteUser={context.deleteUser}
-                   />
-                   <Button><Link to="/adduser">Add new user</Link> </Button>
-               </>
+                <>
+                    <UserTable
+                        users={users}
+                        edit={context.editUser}
+                        deleteUser={context.deleteUser}
+                    />
+                    <Button><Link to="/adduser">Add new user</Link> </Button>
+                </>
                 :
                 <ClipLoader
                     size={50}
                     color={"#123abc"}
-                    css={{"margin" :"0 auto",}}
+                    css={{"margin": "0 auto",}}
                 />
             }
 

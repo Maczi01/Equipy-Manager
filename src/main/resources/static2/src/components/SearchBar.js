@@ -3,7 +3,6 @@ import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import React, {useState} from "react";
 import styled from 'styled-components';
 
-
 const SearchWrapper = styled.div`
   width: 400px;
   display: flex;
@@ -13,7 +12,8 @@ const SearchWrapper = styled.div`
   margin:  0 auto;
   margin-top:  12px;
   margin-bottom: 20px;
-`
+`;
+
 const SearchInput = styled.input`
   margin-bottom: 0;
   flex-grow: 1;
@@ -21,7 +21,7 @@ const SearchInput = styled.input`
   flex-basis: auto;
   align-self: center;
   border-radius: 0.25rem;
-  height: 35px;
+  height: 45px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   background-clip: padding-box;
@@ -31,25 +31,17 @@ const SearchInput = styled.input`
   font-size: 1rem;
   width: 100%;
   line-height: 2;
-  padding: 0.375rem 1.25rem;
-  -webkit-transition: border-color 0.2s;
-  -moz-transition: border-color 0.2s;
-  transition: border-color 0.2s;
-  
 `
 const InputButton = styled.button`
-  height: 35px;
+  height: 45px;
   margin: 0;
-  padding: 10px 1.3rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   font-family: "Font Awesome 5 Free";
-  font-size: 1rem;
   display: inline-block;
   font-weight: 600;
-  font-size: 0.8rem;
   line-height: 1.15;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
@@ -59,18 +51,19 @@ const InputButton = styled.button`
   vertical-align: middle;
   text-shadow: none;
   transition: all 0.2s;
-  
-`
+`;
 const Label = styled.label`
- margin-bottom: 0;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: auto;
   align-self: center;
-  height: 35px;
+  height: 45px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-`
+`;
+const Form = styled.form`
+  display: flex;
+`;
 
 export const SearchBar = ({catchText}) => {
 
@@ -83,17 +76,16 @@ export const SearchBar = ({catchText}) => {
 
     return (
         <SearchWrapper>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Label>
                     <SearchInput
                         onChange={e => setText(e.target.value)}
-
                         placeholder="Type something..."/>
                 </Label>
                 <InputButton type="submit" className="search-submit button" value="&#xf002">
                     <FontAwesomeIcon icon={faSearch}/>
                 </InputButton>
-            </form>
+            </Form>
         </SearchWrapper>
     )
 }

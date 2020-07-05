@@ -28,35 +28,39 @@ export const AssignmentHistoryView = ({match}) => {
     const context = useContext(AppContext);
     const selectedId = match.params.id;
     const asset = context.assets.filter(i => i.id == selectedId)[0]
-
+    const returnAsset = (id) => Assignment.returnAsset(id)
     const [assignments, setAssignments] = useState([]);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             const response = await Equipy.assignmentHistory(selectedId);
+            // const response = await Assignment.getAssignment(selectedId);
+
             setAssignments(response)
         }
-
         fetchData();
-    });
+    },[assignments]);
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);
         setUsers(response)
     };
     const finishAssignment = async (id) => {
-        const response = await Assignment.returnAsset(id);
+        // const response = await Assignment.returnAsset(id);
+        // const res = await Equipy.assignmentHistory(selectedId);
         const res = await Equipy.assignmentHistory(selectedId);
         setAssignments(res)
         // setUsers(response)
     };
+    console.log("created")
 
     const assignUser = async (id) => {
         console.log(id)
         const data = new Date();
         const assignment = {startData: data, endData: null, userId: id, assetId: asset.id}
         const response = await Assignment.assignAssetToUser(assignment)
+        console.log(`Assignement: ${response}`)
         // return response.data;
     }
 
@@ -68,17 +72,32 @@ export const AssignmentHistoryView = ({match}) => {
                 catchText={catchText}
             />
             {users.length ?
-                <UserTable2
-                    assignUser={assignUser}
-                    users={users}
-                /> : null
-            }
+                <>
+                    <p>assignemtnty</p>
+                    <UserTable2
+                        assignUser={assignUser}
+                        users={users}
+                    />
 
-            <HistoryTable
-                asset={asset}
-                assignments={assignments}
-                finishAssignment={finishAssignment}
-            />
+
+                </>
+                : null
+            }
+            {
+                assignments.length ?
+
+                  <>
+                      <p>historyja</p>
+                      <HistoryTable
+                      asset={asset}
+                      assignments={assignments}
+                      // finishAssignment={finishAssignment}
+                      returnAsset={returnAsset}
+                  />
+                  </>
+                    :
+                    <p>No assignments history</p>
+            }
 
         </ViewWrapper>
     )

@@ -21,7 +21,7 @@ export const Users = {
         const response = await axios.put(`${BASE_URL}/users/${userToUpdate.id}`, userToUpdate)
         return response.data;
     },
-    deleteUser: async (userToRemove) => {
+    removeUser: async (userToRemove) => {
         await axios.delete(`${BASE_URL}/users/${userToRemove.id}`)
     },
 

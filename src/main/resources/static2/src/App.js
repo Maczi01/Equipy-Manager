@@ -51,7 +51,7 @@ class App extends Component {
 
     removeUser = (indexToRemove) => {
         const userToRemove = this.state.users.filter(u => u.id == indexToRemove)[0]
-        Users.deleteUser(userToRemove)
+        Users.removeUser(userToRemove)
             .then(this.setState(prevState => {
                 const users = this.state.users.filter((user, index) => user.id !== indexToRemove)
                 return {users}
@@ -85,7 +85,6 @@ class App extends Component {
                 return {assets}
             }))
     }
-
     render() {
         const contextElements = {
             users: this.state.users,

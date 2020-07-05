@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPaperclip, faUserCog, faUserEdit, faUserMinus} from "@fortawesome/free-solid-svg-icons";
-import {useHistory} from "react-router";
+import {faPaperclip} from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -46,8 +45,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const UserTable2 = ({users, deleteUser, assignUser}) => {
-    const history = useHistory();
+export const UserTable2 = ({users, assignUser}) => {
 
     return (
         <Wrapper>
@@ -59,7 +57,7 @@ export const UserTable2 = ({users, deleteUser, assignUser}) => {
                         #
                     </Cell>
                     <Cell>
-                        Name
+                        Namesssss
                     </Cell>
                     <Cell>
                         Surname
@@ -76,7 +74,6 @@ export const UserTable2 = ({users, deleteUser, assignUser}) => {
                 {users.map((user, index) =>
                     <Row
                         key={`user-${user.pesel}`}
-
                     >
                         <Cell>
                             {index + 1}
@@ -97,11 +94,7 @@ export const UserTable2 = ({users, deleteUser, assignUser}) => {
                         </Cell>
                     </Row>
                 )}
-
-
             </TableWrapper>
-
-
         </Wrapper>
     )
 }
