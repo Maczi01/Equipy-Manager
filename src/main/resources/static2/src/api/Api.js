@@ -14,12 +14,11 @@ export const Users = {
         const response = await axios.post(`${BASE_URL}/users`, user);
         return response.data;
     },
-
     editUser: async (userToUpdate) => {
         if (!userToUpdate.id) {
             throw new Error("This timebox haven't id!")
         }
-        const response = await axios.put(`${BASE_URL}/users/${userToUpdate.id}`, userToUpdate);
+        const response = await axios.put(`${BASE_URL}/users/${userToUpdate.id}`, userToUpdate)
         return response.data;
     },
     deleteUser: async (userToRemove) => {

@@ -20,7 +20,7 @@ public class User {
     private String lastName;
     @Column(unique = true)
     private String pesel;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Assignment> assignmentList = new ArrayList<>();
 
     public Long getId() {

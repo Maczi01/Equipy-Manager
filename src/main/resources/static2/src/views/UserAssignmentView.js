@@ -39,7 +39,7 @@ export const UserAssignmentView = ({match}) => {
         }
 
         fetchData();
-    }, []);
+    });
 
     return (
         <ViewWrapper>

@@ -41,7 +41,7 @@ const Textarea = styled.textarea`
   font-size: 18px;
 `
 
-const Form = styled.h2`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
 `

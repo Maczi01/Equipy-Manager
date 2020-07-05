@@ -33,9 +33,8 @@ export const EquipyView = () => {
             const response = await Equipy.getAssetByNameOrSerialNumber("");
             setAssets(response)
         }
-
         fetchData();
-    }, []);
+    });
 
     const catchText = async (text) => {
         const response = await Equipy.getAssetByNameOrSerialNumber(text);

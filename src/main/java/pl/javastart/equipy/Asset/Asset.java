@@ -20,7 +20,7 @@ public class Asset {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
-    @OneToMany(mappedBy = "asset")
+    @OneToMany(mappedBy = "asset", cascade = CascadeType.REMOVE)
     private List<Assignment> assignments = new ArrayList<>();
 
 

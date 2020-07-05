@@ -25,7 +25,7 @@ const FormHeader = styled.h2`
   text-align: center;
 `;
 
-const Form = styled.h2`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
 `

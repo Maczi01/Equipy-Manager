@@ -25,7 +25,7 @@ const FormHeader = styled.h2`
   text-align: center;
 `
 
-const Form = styled.h2`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
 `
@@ -39,6 +39,7 @@ export const AddUser = ({addUser}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         addUser({firstName, lastName, pesel});
+        console.log(e)
     }
 
     return (

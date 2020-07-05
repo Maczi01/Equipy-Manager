@@ -15,7 +15,7 @@ public class Category {
     @Column(unique = true)
     private String name;
     private String description;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
     private Set<Asset> assets = new HashSet<>();
 
 

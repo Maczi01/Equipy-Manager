@@ -84,7 +84,7 @@ class App extends Component {
                 const assets = this.state.assets.filter((asset, index) => asset.id !== indexToRemove)
                 return {assets}
             }))
-    };
+    }
 
     render() {
         const contextElements = {

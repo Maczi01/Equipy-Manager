@@ -34,7 +34,7 @@ export const MainView = () => {
             setUsers(response)
         }
         fetchData();
-    }, []);
+    });
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);

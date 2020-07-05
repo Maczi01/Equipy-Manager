@@ -39,7 +39,7 @@ export const AssignmentHistoryView = ({match}) => {
         }
 
         fetchData();
-    }, []);
+    });
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);
