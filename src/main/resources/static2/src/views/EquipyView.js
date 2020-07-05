@@ -44,6 +44,8 @@ export const EquipyView = () => {
         const response = await Equipy.getAssetByNameOrSerialNumber(text);
         setAssets(response)
     };
+    console.log("EquipyView")
+
     return (
         <ViewWrapper>
             <MainImage/>

@@ -42,7 +42,7 @@ export const MainView = () => {
         const response = await User.getUserByLastName(text);
         setUsers(response)
     };
-
+    console.log("MainView")
     return (
         <ViewWrapper>
             <MainImage/>

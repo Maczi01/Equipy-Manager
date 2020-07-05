@@ -53,7 +53,6 @@ export const UserTable = ({users, deleteUser}) => {
         <Wrapper>
 
             <TableWrapper>
-
                 <HeaderAndRow>
                     <Cell>
                         #

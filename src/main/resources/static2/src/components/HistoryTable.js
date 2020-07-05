@@ -48,7 +48,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
 `
 
-export const HistoryTable = ({asset, assignments, finishAssignment}) => {
+export const HistoryTable = ({asset, assignments, finishAssignment, returnAsset}) => {
     return (
         <Wrapper>
             <TableWrapper>
@@ -143,7 +143,7 @@ export const HistoryTable = ({asset, assignments, finishAssignment}) => {
                             {assignment.end ? null :
                                 <FontAwesomeIconWrapper
                                     icon={faHistory}
-                                    onClick={() => finishAssignment(assignment.id)}
+                                    onClick={() => returnAsset(assignment.id)}
 
                                 />}
                         </Cell>

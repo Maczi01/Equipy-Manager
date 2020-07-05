@@ -40,31 +40,22 @@ export const AssignmentHistoryView = ({match}) => {
             setAssignments(response)
         }
         fetchData();
-    },[assignments]);
+    });
+    // },[assignments]);
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);
         setUsers(response)
     };
-    const finishAssignment = async (id) => {
-        // const response = await Assignment.returnAsset(id);
-        // const res = await Equipy.assignmentHistory(selectedId);
-        const res = await Equipy.assignmentHistory(selectedId);
-        setAssignments(res)
-        // setUsers(response)
-    };
+
     console.log("created")
 
     const assignUser = async (id) => {
-        console.log(id)
-        const data = new Date();
-        const assignment = {startData: data, endData: null, userId: id, assetId: asset.id}
+        const assignment = {startData:  new Date(), endData: null, userId: id, assetId: asset.id}
         const response = await Assignment.assignAssetToUser(assignment)
         console.log(`Assignement: ${response}`)
-        // return response.data;
     }
 
-    console.log(assignments);
     return (
         <ViewWrapper>
             <MainImage/>
@@ -91,7 +82,6 @@ export const AssignmentHistoryView = ({match}) => {
                       <HistoryTable
                       asset={asset}
                       assignments={assignments}
-                      // finishAssignment={finishAssignment}
                       returnAsset={returnAsset}
                   />
                   </>
