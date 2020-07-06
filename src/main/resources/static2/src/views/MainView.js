@@ -30,12 +30,12 @@ export const MainView = () => {
 
     useEffect(() => {
             async function fetchData() {
-                const response = await User.getUserByLastName("")
+                const response = await User.getUsers()
                 setUsers(response)
             }
             setLoading(true)
             fetchData();
-        },[context.users.length]
+        },[context.users]
     )
     ;
 // }, [context.users]);
