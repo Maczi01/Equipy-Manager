@@ -40,7 +40,7 @@ export const AssignmentHistoryView = ({match}) => {
             setAssignments(response)
         }
         fetchData();
-    },[context.assignments.length] );
+    },[context.assignments] );
     // },[assignments]);
 
     const catchText = async (text) => {
@@ -64,7 +64,6 @@ export const AssignmentHistoryView = ({match}) => {
             />
             {users.length ?
                 <>
-                    <p>assignemtnty</p>
                     <UserTable2
                         assignUser={assignUser}
                         users={users}
@@ -78,7 +77,6 @@ export const AssignmentHistoryView = ({match}) => {
                 assignments.length ?
 
                   <>
-                      <p>historyja</p>
                       <HistoryTable
                       asset={asset}
                       assignments={assignments}

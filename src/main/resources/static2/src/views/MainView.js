@@ -25,8 +25,8 @@ const MainImage = styled.div`
 export const MainView = () => {
 
     const context = useContext(AppContext);
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [users, setUsers] = useState([context.users]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
             async function fetchData() {
