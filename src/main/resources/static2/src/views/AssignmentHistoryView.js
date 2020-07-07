@@ -32,16 +32,16 @@ export const AssignmentHistoryView = ({match}) => {
     const [assignments, setAssignments] = useState([]);
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await Equipy.assignmentHistory(selectedId);
-            // const response = await Assignment.getAssignment(selectedId);
-
-            setAssignments(response)
-        }
-        fetchData();
-    },[context.assignments] );
-    // },[assignments]);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const response = await Equipy.assignmentHistory(selectedId);
+    //         // const response = await Assignment.getAssignment(selectedId);
+    //
+    //         setAssignments(response)
+    //     }
+    //     fetchData();
+    // },[context.assignments] );
+    // // },[assignments]);
 
     const catchText = async (text) => {
         const response = await User.getUserByLastName(text);
@@ -79,8 +79,8 @@ export const AssignmentHistoryView = ({match}) => {
                   <>
                       <HistoryTable
                       asset={asset}
-                      assignments={assignments}
-                      returnAsset={returnAsset}
+                      assignments={context.assignments}
+                      returnAsset={context.returnAssignment}
                   />
                   </>
                     :

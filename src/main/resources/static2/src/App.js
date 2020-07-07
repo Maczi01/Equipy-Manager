@@ -89,6 +89,10 @@ class App extends Component {
                 return {assets}
             }))
     }
+
+    returnAssignment = (id) => {
+        Assignment.returnAsset(id)
+    }
     render() {
         const contextElements = {
             users: this.state.users,
@@ -100,6 +104,7 @@ class App extends Component {
             editAsset: this.editAsset,
             deleteAsset: this.deleteAsset,
             assignments: this.state.assignments,
+            returnAssignment: this.returnAssignment
         }
 
         return (
