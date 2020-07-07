@@ -89,9 +89,14 @@ class App extends Component {
                 return {assets}
             }))
     }
-
     returnAssignment = (id) => {
         Assignment.returnAsset(id)
+    }
+
+    assignUser = async (id,asset) => {
+        const assignment = {startData:  new Date(), endData: null, userId: id, assetId: asset.id}
+        const response = await Assignment.assignAssetToUser(assignment)
+        console.log(`Assignement: ${response}`)
     }
     render() {
         const contextElements = {
@@ -104,7 +109,8 @@ class App extends Component {
             editAsset: this.editAsset,
             deleteAsset: this.deleteAsset,
             assignments: this.state.assignments,
-            returnAssignment: this.returnAssignment
+            returnAssignment: this.returnAssignment,
+            assignUser: this.assignUser
         }
 
         return (
