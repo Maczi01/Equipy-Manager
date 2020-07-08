@@ -28,61 +28,52 @@ export const AssignmentHistoryView = ({match}) => {
     const context = useContext(AppContext);
     const selectedId = match.params.id;
     const asset = context.assets.filter(i => i.id == selectedId)[0]
-    const returnAsset = (id) => Assignment.returnAsset(id)
-    const [assignments, setAssignments] = useState([]);
-    const [users, setUsers] = useState([]);
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const response = await Equipy.assignmentHistory(selectedId);
-    //         // const response = await Assignment.getAssignment(selectedId);
-    //
-    //         setAssignments(response)
-    //     }
-    //     fetchData();
-    // },[context.assignments] );
-    // // },[assignments]);
-
-    const catchText = async (text) => {
-        const response = await User.getUserByLastName(text);
-        setUsers(response)
-    };
-
+    const [assignments, setAssignments] = useState();
+    // const assignments = context.assignments(asset.id)
+    console.log(asset.id)
     console.log("created")
 
-    const assignUser = async (id) => {
-        const assignment = {startData:  new Date(), endData: null, userId: id, assetId: asset.id}
-        const response = await Assignment.assignAssetToUser(assignment)
-        console.log(`Assignement: ${response}`)
-    }
+    useEffect(() => {
+        async function fetchData() {
+            const response = await Equipy.assignmentHistory(selectedId);
+            setAssignments(response);
+        }
+        fetchData();
+    }, []);
+    // const assignUser = async (id) => {
+    //     const assignment = {startData:  new Date(), endData: null, userId: id, assetId: asset.id}
+    //     const response = await Assignment.assignAssetToUser(assignment)
+    //     console.log(`Assignement: ${response}`)
+    // }
 
     return (
         <ViewWrapper>
             <MainImage/>
             <SearchBar
-                catchText={catchText}
+                // catchText={catchText}
             />
-            {users.length ?
+            {context.users.length ?
                 <>
                     <UserTable2
-                        assignUser={assignUser}
-                        users={users}
+                        assignUser={context.assignUser}
+                        asset={asset}
+                        users={context.users}
                     />
 
 
                 </>
-                : null
+                : <p>nic</p>
             }
             {
-                assignments.length ?
+                context.assignments.length ?
 
-                  <>
-                      <HistoryTable
-                      asset={asset}
-                      assignments={context.assignments}
-                      returnAsset={context.returnAssignment}
-                  />
-                  </>
+                    <>
+                        <HistoryTable
+                            asset={asset}
+                            assignments={assignments}
+                            returnAsset={context.returnAssignment}
+                        />
+                    </>
                     :
                     <p>No assignments history</p>
             }

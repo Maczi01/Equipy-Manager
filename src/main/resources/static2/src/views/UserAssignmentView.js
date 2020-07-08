@@ -28,17 +28,17 @@ export const UserAssignmentView = ({match}) => {
     const context = useContext(AppContext);
     const selectedId = match.params.id;
     const user = context.users.filter(i => i.id == selectedId)[0]
-    const returnAsset = (id) => Assignment.returnAsset(id)
-    const [assignments, setAssignments] = useState([]);
+    // const returnAsset = (id) => Assignment.returnAsset(id)
+    // const [assignments, setAssignments] = useState([]);
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await Assignment.getAssignment(selectedId);
-            setAssignments(response)
-        }
-        fetchData();
-    },[context.assignments]);
-    console.log("lol")
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const response = await Assignment.getAssignment(selectedId);
+    //         setAssignments(response)
+    //     }
+    //     fetchData();
+    // },[assignments]);
+    // console.log("lol")
 
     return (
         <ViewWrapper>
@@ -46,7 +46,7 @@ export const UserAssignmentView = ({match}) => {
             <AssignmentTable
                 user={user}
                 assignments={assignments}
-                returnAsset={returnAsset}
+                returnAsset={context.returnAssignment}
             />
         </ViewWrapper>
     )

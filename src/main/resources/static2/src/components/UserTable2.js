@@ -45,7 +45,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const UserTable2 = ({users, assignUser}) => {
+export const UserTable2 = ({users, assignUser, asset}) => {
 
     return (
         <Wrapper>
@@ -89,7 +89,7 @@ export const UserTable2 = ({users, assignUser}) => {
                         </Cell>
                         <Cell>
                             <FontAwesomeIconWrapper
-                                onClick={() => assignUser(user.id)}
+                                onClick={() => assignUser(user.id, asset)}
                                 icon={faPaperclip} title="Assign user"/>
                         </Cell>
                     </Row>

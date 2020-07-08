@@ -27,46 +27,46 @@ const MainImage = styled.div`
 export const EquipyView = () => {
 
     const context = useContext(AppContext);
-    const [assets, setAssets] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await Equipy.getAssetByNameOrSerialNumber("");
-            setAssets(response)
-            setLoading(true);
-        }
-
-        fetchData();
-    }, [context.assets]);
-
-    const catchText = async (text) => {
-        const response = await Equipy.getAssetByNameOrSerialNumber(text);
-        setAssets(response)
-    };
+    // const [assets, setAssets] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    //
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const response = await Equipy.getAssetByNameOrSerialNumber("");
+    //         setAssets(response)
+    //         setLoading(true);
+    //     }
+    //
+    //     fetchData();
+    // }, [context.assets]);
+    //
+    // const catchText = async (text) => {
+    //     const response = await Equipy.getAssetByNameOrSerialNumber(text);
+    //     setAssets(response)
+    // };
     console.log("EquipyView")
 
     return (
         <ViewWrapper>
             <MainImage/>
             <SearchBar
-                catchText={catchText}
+                // catchText={catchText}
             />
-            {loading ?
+            {/*{loading ?*/}
                 <>
                     <EquipyTable
-                        assets={assets}
+                        assets={context.assets}
                         edit={context.editAsset}
                         deleteAsset={context.deleteAsset}
                     />
                 </>
-                :
-                <ClipLoader
-                    size={50}
-                    color={"#123abc"}
-                    css={{"margin": "0 auto",}}
-                />
-            }
+            {/*    :*/}
+            {/*    <ClipLoader*/}
+            {/*        size={50}*/}
+            {/*        color={"#123abc"}*/}
+            {/*        css={{"margin": "0 auto",}}*/}
+            {/*    />*/}
+            {/*}*/}
             < Button> < Link to="/addequipy"> Add new equipy</Link> </Button>
         </ViewWrapper>
     )

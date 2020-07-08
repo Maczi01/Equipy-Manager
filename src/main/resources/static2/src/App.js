@@ -19,7 +19,7 @@ class App extends Component {
     state = {
         users: [],
         assets: [],
-        assignments: []
+        assignment:  {}
     }
 
     componentDidMount() {
@@ -29,9 +29,9 @@ class App extends Component {
         Equipy.getEquipy()
             .then(assets => this.setState({assets}))
             .catch(error => console.log("Can not load data"));
-        Assignment.getAssignment()
-            .then(assignments => this.setState({assignments}))
-            .catch(error => console.log("Can not load data"));
+        // Assignment.getAssignment()
+        //     .then(assignments => this.setState({assignments}))
+        //     .catch(error => console.log("Can not load data"));
     }
 
     addUser = (user) => {
@@ -93,11 +93,16 @@ class App extends Component {
         Assignment.returnAsset(id)
     }
 
-    assignUser = async (id,asset) => {
-        const assignment = {startData:  new Date(), endData: null, userId: id, assetId: asset.id}
+    assignmentForAsset = (id) => Equipy.assignmentHistory(id)
+
+    assignUser = async (id, asset) => {
+        const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id}
         const response = await Assignment.assignAssetToUser(assignment)
+            .then(() => Assignment.getAssignment())
+            .then(assignments => this.setState({assignments}))
         console.log(`Assignement: ${response}`)
     }
+
     render() {
         const contextElements = {
             users: this.state.users,
@@ -108,7 +113,7 @@ class App extends Component {
             addEquipy: this.addEquipy,
             editAsset: this.editAsset,
             deleteAsset: this.deleteAsset,
-            assignments: this.state.assignments,
+            assignments: this.assignmentForAsset,
             returnAssignment: this.returnAssignment,
             assignUser: this.assignUser
         }
