@@ -48,7 +48,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const AssignmentTable = ({assignments, user, returnAsset}) => {
+export const AssignmentTable = ({assignments=[], user, returnAsset}) => {
     return (
         <Wrapper>
             <TableWrapper>
@@ -125,7 +125,7 @@ export const AssignmentTable = ({assignments, user, returnAsset}) => {
                             </Cell>
                             <Cell>
                                 {assignment.end ? null : <FontAwesomeIconWrapper
-                                    title="Go back"
+                                    title="Return asset"
                                     icon={faUndo}
                                     onClick={() => returnAsset(assignment.id)}
                                 />}

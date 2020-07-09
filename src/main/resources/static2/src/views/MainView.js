@@ -60,12 +60,6 @@ export const MainView = () => {
                     />
                     <Link to="/adduser">Add new user</Link>
                 </>
-                {/*:*/}
-                {/*<ClipLoader*/}
-                {/*    size={50}*/}
-                {/*    color={"#123abc"}*/}
-                {/*    css={{"margin": "0 auto",}}*/}
-                {/*/>*/}
             }
         </ViewWrapper>
     )

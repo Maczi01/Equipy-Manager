@@ -29,7 +29,7 @@ export const UserAssignmentView = ({match}) => {
     const selectedId = match.params.id;
     const user = context.users.filter(i => i.id == selectedId)[0]
     // const returnAsset = (id) => Assignment.returnAsset(id)
-    // const [assignments, setAssignments] = useState([]);
+    // const assignments = context.assignmentForUser(selectedId)
 
     // useEffect(() => {
     //     async function fetchData() {
@@ -37,7 +37,7 @@ export const UserAssignmentView = ({match}) => {
     //         setAssignments(response)
     //     }
     //     fetchData();
-    // },[assignments]);
+    // },[]);
     // console.log("lol")
 
     return (
@@ -45,7 +45,7 @@ export const UserAssignmentView = ({match}) => {
             <MainImage/>
             <AssignmentTable
                 user={user}
-                assignments={assignments}
+                assignments={context.assignmentForUser(selectedId)}
                 returnAsset={context.returnAssignment}
             />
         </ViewWrapper>

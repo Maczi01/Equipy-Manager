@@ -91,9 +91,11 @@ class App extends Component {
     }
     returnAssignment = (id) => {
         Assignment.returnAsset(id)
+            .then(() => Users.getUsers())
+            .then(users => this.setState({users}))
     }
 
-    assignmentForAsset = (id) => Equipy.assignmentHistory(id)
+    assignmentForUser = (id) =>  {return Assignment.getAssignment(id)}
 
     assignUser = async (id, asset) => {
         const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id}
@@ -115,7 +117,8 @@ class App extends Component {
             deleteAsset: this.deleteAsset,
             assignments: this.assignmentForAsset,
             returnAssignment: this.returnAssignment,
-            assignUser: this.assignUser
+            assignUser: this.assignUser,
+            assignmentForUser: this.assignmentForUser
         }
 
         return (
