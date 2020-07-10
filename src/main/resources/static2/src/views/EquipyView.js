@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg";
 import {EquipyTable} from "../components/EquipyTable";
@@ -6,9 +6,6 @@ import {Button} from "../components/Button";
 import {Link} from "react-router-dom";
 import {SearchBar} from "../components/SearchBar";
 import AppContext from "../context/context";
-import {UserTable} from "../components/UserTable";
-import {Equipy} from "../api/Api";
-import ClipLoader from "react-spinners/ClipLoader";
 
 const ViewWrapper = styled.div`
    margin: 0 auto;

@@ -2,13 +2,10 @@ import React, {useContext, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg"
 import AppContext from "../context/context";
-import {AssignmentTable} from "../components/AssignmentTable";
-import {Assignment, Equipy, Users as User} from "../api/Api";
+import {Equipy} from "../api/Api";
 import {HistoryTable} from "../components/HistoryTable";
-import {UserTable} from "../components/UserTable";
 import {SearchBar} from "../components/SearchBar";
 import {UserTable2} from "../components/UserTable2";
-
 
 const ViewWrapper = styled.div`
    margin: 0 auto;
