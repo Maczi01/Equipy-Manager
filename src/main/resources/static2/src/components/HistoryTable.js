@@ -1,10 +1,7 @@
 import styled from 'styled-components';
-import React, {useContext} from 'react';
+import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUserCog, faUndo, faUserMinus, faEdit, faHistory, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import {useHistory} from "react-router";
-import AppContext from "../context/context";
-import {Assignment} from "../api/Api";
+import {faHistory} from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   margin: 0 auto;

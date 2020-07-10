@@ -32,7 +32,7 @@ export const UserAssignmentView = ({match}) => {
     //         setAssignments(response)
     //     }
     //     fetchData();
-    // },[]);
+    // });
     // console.log("lol")
 
     return (
