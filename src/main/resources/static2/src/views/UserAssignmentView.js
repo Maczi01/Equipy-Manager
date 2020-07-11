@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import background from "../assets/background.jpg"
 import AppContext from "../context/context";
 import {AssignmentTable} from "../components/AssignmentTable";
+import {Assignment} from "../api/Api";
 
 
 const ViewWrapper = styled.div`
@@ -23,24 +24,26 @@ export const UserAssignmentView = ({match}) => {
     const context = useContext(AppContext);
     const selectedId = match.params.id;
     const user = context.users.filter(i => i.id == selectedId)[0]
-    // const returnAsset = (id) => Assignment.returnAsset(id)
-    // const assignments = context.assignmentForUser(selectedId)
+    const [assignments, setAssignments] = useState([])
+    //
+    useEffect(() => {
+        async function fetchData() {
+            const response = await Assignment.getAssignment(selectedId);
+            setAssignments(response)
+        }
+        fetchData();
+    }, []);
+    useEffect(() => {context.getUserAssignment(selectedId)}, []);
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const response = await Assignment.getAssignment(selectedId);
-    //         setAssignments(response)
-    //     }
-    //     fetchData();
-    // });
-    // console.log("lol")
+    console.log("lol")
+    // console.log(userAssignment)
 
     return (
         <ViewWrapper>
             <MainImage/>
             <AssignmentTable
                 user={user}
-                assignments={context.assignmentForUser(selectedId)}
+                assignments={assignments}
                 returnAsset={context.returnAssignment}
             />
         </ViewWrapper>

@@ -19,7 +19,7 @@ class App extends Component {
     state = {
         users: [],
         assets: [],
-        assignment:  {}
+        assignmentsForUser: []
     }
 
     componentDidMount() {
@@ -60,7 +60,7 @@ class App extends Component {
                 const users = this.state.users.filter((user, index) => user.id !== indexToRemove)
                 return {users}
             }))
-    }
+    };
 
     addEquipy = (equipy) => {
         Equipy.addEquipy(equipy)
@@ -79,23 +79,27 @@ class App extends Component {
                     };
                 })
             );
-    }
+    };
 
     deleteAsset = (indexToRemove) => {
-        const assetToRemove = this.state.assets.filter(a => a.id == indexToRemove)[0]
+        const assetToRemove = this.state.assets.filter(a => a.id == indexToRemove)[0];
         Equipy.deleteAsset(assetToRemove)
             .then(this.setState(prevState => {
-                const assets = this.state.assets.filter((asset, index) => asset.id !== indexToRemove)
+                const assets = this.state.assets.filter((asset, index) => asset.id !== indexToRemove);
                 return {assets}
             }))
-    }
+    };
+
     returnAssignment = (id) => {
         Assignment.returnAsset(id)
             .then(() => Users.getUsers())
             .then(users => this.setState({users}))
-    }
+    };
 
-    assignmentForUser = (id) =>  {return Assignment.getAssignment(id)}
+    assignmentForUser = (id) => {
+        Assignment.getAssignment(id)
+            .then(() => Users.getUsers())
+    };
 
     assignUser = async (id, asset) => {
         const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id}
@@ -103,7 +107,7 @@ class App extends Component {
             .then(() => Assignment.getAssignment())
             .then(assignments => this.setState({assignments}))
         console.log(`Assignement: ${response}`)
-    }
+    };
 
     render() {
         const contextElements = {
@@ -118,8 +122,9 @@ class App extends Component {
             assignments: this.assignmentForAsset,
             returnAssignment: this.returnAssignment,
             assignUser: this.assignUser,
-            assignmentForUser: this.assignmentForUser
-        }
+            getUserAssignment: this.assignmentForUser,
+            assignmentForUser: this.state.assignmentsForUser
+        };
 
         return (
             <BrowserRouter>
