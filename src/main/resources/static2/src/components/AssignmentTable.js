@@ -48,7 +48,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
 `
 
 
-export const AssignmentTable = ({assignments, user, returnAsset}) => {
+export const AssignmentTable = ({assignments=[], user, returnAsset}) => {
     return (
         <Wrapper>
             <TableWrapper>

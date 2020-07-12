@@ -97,8 +97,10 @@ class App extends Component {
     };
 
     assignmentForUser = (id) => {
-        Assignment.getAssignment(id)
-            .then(() => Users.getUsers())
+        return Assignment.getAssignment(id)
+        // const assignment = Assignment.getAssignment(id)
+        //     .then(() => Users.getUsers())
+        // return assignment;
     };
 
     assignUser = async (id, asset) => {
