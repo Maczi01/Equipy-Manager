@@ -103,13 +103,7 @@ class App extends Component {
         // return assignment;
     };
 
-    assignUser = async (id, asset) => {
-        const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id}
-        const response = await Assignment.assignAssetToUser(assignment)
-            .then(() => Assignment.getAssignment())
-            .then(assignments => this.setState({assignments}))
-        console.log(`Assignement: ${response}`)
-    };
+
 
     render() {
         const contextElements = {

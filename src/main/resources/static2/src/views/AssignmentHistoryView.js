@@ -34,6 +34,14 @@ export class AssignmentHistoryView extends Component {
             .catch(error => console.log("Can not load data"));
     }
 
+    assignUser = (id, asset) => {
+        const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id}
+        const response =  Assignment.assignAssetToUser(assignment)
+            .then(() => Assignment.getAssignment(id))
+            .then(assignments => this.setState({assignments}))
+        console.log(`Assignement: ${response}`)
+    };
+
     render() {
         return (
             <AppContext.Consumer>
@@ -44,7 +52,7 @@ export class AssignmentHistoryView extends Component {
                             // catchText={catchText}
                         />
                         <UserTable2
-                            assignUser={context.assignUser}
+                            assignUser={this.assignUser}
                             asset={context.assets.filter(i => i.id == this.state.assetId)[0]}
                             users={context.users}
                         />
