@@ -35,13 +35,23 @@ export class AssignmentHistoryView extends Component {
     }
 
     assignUser = (id, asset) => {
-        const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id}
-        const response =  Assignment.assignAssetToUser(assignment)
-            .then(() => Assignment.getAssignment(id))
-            .then(assignments => this.setState({assignments}))
+        const assignment = {startData: new Date(), endData: null, userId: id, assetId: asset.id};
+        const response = Assignment.assignAssetToUser(assignment)
+            .then(() => Equipy.assignmentHistory(this.state.assetId)
+                .then(assignments => this.setState({assignments}))
+                .catch(error => console.log("Can not load data")))
+
+        //     .then(() => Assignment.getAssignment(id))
+        //     .then(assignments => this.setState({assignments}))
         console.log(`Assignement: ${response}`)
     };
 
+    returnAssignment = (id) => {
+        Assignment.returnAsset(id)
+            .then(() => Equipy.assignmentHistory(this.state.assetId)
+                .then(assignments => this.setState({assignments}))
+                .catch(error => console.log("Can not load data")))
+    }
     render() {
         return (
             <AppContext.Consumer>
@@ -61,7 +71,7 @@ export class AssignmentHistoryView extends Component {
                         <HistoryTable
                             asset={context.assets.filter(i => i.id == this.state.assetId)[0]}
                             assignments={this.state.assignments}
-                            returnAsset={context.returnAssignment}
+                            returnAsset={this.returnAssignment}
                         />
 
                     </ViewWrapper>

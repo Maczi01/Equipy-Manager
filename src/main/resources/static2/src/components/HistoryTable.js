@@ -45,7 +45,7 @@ const FontAwesomeIconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
 `
 
-export const HistoryTable = ({asset, assignments = [], finishAssignment, returnAsset}) => {
+export const HistoryTable = ({asset, assignments = [], returnAsset}) => {
     return (
         <Wrapper>
             <TableWrapper>
